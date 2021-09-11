@@ -1,17 +1,5 @@
-<div style="display: flex; flex-direction: column; height: 28rem; align-items: center; width: 20rem; justify-content: space-evenly; ">
+<app-navbar></app-navbar>
 
-  <div style="justify-content: space-around; display: flex; flex-direction: column; width: 100%;">
-    <h1 style="font-size: x-large; text-align: center; ">INFO USUARIO</h1>
-    <span><b>Email: </b>{{profileInfo?.email}}</span>
-    <span><b>Name: </b>{{profileInfo?.name}}</span>
-    <span><b>Nickname: </b>{{profileInfo?.nickname}}</span>
-    <div style="margin-top: 10px;">
-      <span><b>Picture: </b></span>
-      <img src="{{profileInfo?.picture}}" alt="avatar" style=" width: 15%;" />
-    </div>
-  </div>
-  <div style="justify-content: space-around; display: flex; width: 100%;">
-    <button [routerLink]="['/EnviaMail']" class="btn btn-success">Enviar mail</button>
-    <app-logout-button></app-logout-button>
-  </div>
+<div style="text-align:center" class="container">
+    <h1>Welcome to Brainstorm</h1>
 </div>
