@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Iinfo } from 'src/app/models/info.mode';
+import { Iinfo } from 'src/app/Models/info.mode';
 const HEADERS = {
   headers: new HttpHeaders({
     'Access-Control-Allow-Origin' : '*',

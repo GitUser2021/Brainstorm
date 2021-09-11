@@ -12,7 +12,7 @@ import { LoginButtonComponent } from './Components/login-button/login-button.com
 import { LogoutButtonComponent } from './Components/logout-button/logout-button.component';
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { HomeComponent } from './Pages/home/home.component';
-import { EnviaMailComponent } from './Pages/envia-mail/envia-mail.component';
+import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component'
 
 
 @NgModule({
