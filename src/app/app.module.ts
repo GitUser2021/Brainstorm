@@ -13,7 +13,8 @@ import { LogoutButtonComponent } from './Components/logout-button/logout-button.
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { HomeComponent } from './Pages/home/home.component';
 import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component';
-import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component'
+import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
+import { MarketingComponent } from './Pages/marketing/marketing.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component'
     EnviaMailComponent,
     NavbarComponent,
     CrearGrupoComponent,
+    MarketingComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

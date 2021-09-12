@@ -1,67 +1,49 @@
-<div class="container">
-    <div class="row">
-      <div >
-        <form [formGroup]="infoForm" (ngSubmit)="sendMail()" #form="ngForm">
-          <label for="nameInp"></label>
-          <input type="text" id="nameInp" class="form-control border-info" formControlName="name" placeholder="Name">
-  
-          <div *ngIf="name.invalid && (name.dirty || name.touched)"
-               class="alert alert-danger p-1">
-  
-            <p *ngIf="name.errors.required" class="mb-0">
-              Name is required.
-            </p>
-            <p *ngIf="name.errors.minlength" class="mb-0">
-              Name must be at least 3 characters long.
-            </p>
+<form [formGroup]="infoForm" (ngSubmit)="sendMail()" #form="ngForm">
+<div class="background">
+    <div class="container">
+      <div class="screen">
+        <div class="screen-header">
+          <div class="screen-header-left">
+            <div class="screen-header-button close"></div>
+            <div class="screen-header-button maximize"></div>
+            <div class="screen-header-button minimize"></div>
           </div>
-  
-          <label for="mailInp"></label>
-          <input type="text" id="mailInp" class="form-control border-info" formControlName="email" placeholder="To:">
-  
-          <div *ngIf="email.invalid && (email.dirty || email.touched)"
-               class="alert alert-danger p-1">
-  
-            <p *ngIf="email.errors.required" class="mb-0">
-              Email is required.
-            </p>
-            <p *ngIf="email.errors.email" class="mb-0">
-              Email is incorrect.
-            </p>
+          <div class="screen-header-right">
+            <div class="screen-header-ellipsis"></div>
+            <div class="screen-header-ellipsis"></div>
+            <div class="screen-header-ellipsis"></div>
           </div>
-
-          <label for="mailInp"></label>
-          <input type="text" id="mailInp" class="form-control border-info" formControlName="emailCC" placeholder="From:">
-  
-          <div *ngIf="emailCC.invalid && (emailCC.dirty || emailCC.touched)"
-               class="alert alert-danger p-1">
-  
-            <p *ngIf="emailCC.errors.required" class="mb-0">
-              EmailCC is required.
-            </p>
-            <p *ngIf="emailCC.errors.email" class="mb-0">
-              EmailCC is incorrect.
-            </p>
+        </div>
+        <div class="screen-body">
+          <div class="screen-body-item left">
+            <div class="app-title">
+              <span>Inform</span>
+              <span>Task</span>
+            </div>
+            <div class="app-contact">Brainstorm Team</div>
           </div>
-
-          <label for="nameInp"></label>
-          <input type="text" id="nameInp" class="form-control border-info" formControlName="motivo" placeholder="Motive">
-  
-          <div *ngIf="motivo.invalid && (motivo.dirty || motivo.touched)"
-               class="alert alert-danger p-1">
-  
-            <p *ngIf="motivo.errors.required" class="mb-0">
-              motive is required.
-            </p>
-            <p *ngIf="motivo.errors.minlength" class="mb-0">
-              motive must be at least 3 characters long.
-            </p>
+          <div class="screen-body-item">
+            <div class="app-form">
+              <div class="app-form-group">
+                <input formControlName="name" class="app-form-control" placeholder="NAME" value="Krisantus Wanandi">
+              </div>
+              <div class="app-form-group">
+                <input formControlName="email" class="app-form-control" placeholder="TO:">
+              </div>
+              <div class="app-form-group">
+                  <input formControlName="emailCC" class="app-form-control" placeholder="FROM:">
+                </div>
+              <div class="app-form-group message">
+                <input formControlName="motivo" class="app-form-control" placeholder="MESSAGE">
+              </div>
+              <div class="app-form-group buttons">
+                <button class="app-form-button">SEND</button>
+              </div>
+            </div>
           </div>
-          
-          <div style="text-align: center" class="text-right mt-3">
-            <button class="btn btn-success" [disabled]="form.invalid">Send</button>
-          </div>
-        </form>
+        </div>
       </div>
+      
     </div>
   </div>
+</form>

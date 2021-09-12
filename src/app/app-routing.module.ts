@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { HomeComponent } from './Pages/home/home.component';
 import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component'
+import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -12,6 +13,12 @@ const routes: Routes = [
   {
     path: 'EnviaMail',
     component: EnviaMailComponent,
+    canActivate: [AuthGuard]
+  }
+  , 
+  {
+    path: 'CrearGrupo',
+    component: CrearGrupoComponent,
     canActivate: [AuthGuard]
   }
 ];
