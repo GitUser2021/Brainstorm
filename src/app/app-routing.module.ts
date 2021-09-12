@@ -4,6 +4,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { HomeComponent } from './Pages/home/home.component';
 import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component'
 import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
+import { MarketingComponent } from './Pages/marketing/marketing.component';
 const routes: Routes = [
   {
     path: 'home',
