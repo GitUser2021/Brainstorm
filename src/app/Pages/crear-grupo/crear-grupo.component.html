@@ -1,38 +1,22 @@
 <app-navbar></app-navbar>
-<body>
-  <form class="container" [formGroup]="infoForm" (ngSubmit)="CrearGrupo()" #form="ngForm">
-  <div style="margin-bottom: 15px; padding-top: 10%;">
-    <div style="display:flex;">
-      <div class="container">
-        <form>
+<div id="crearGrupo-main">
+  <form [formGroup]="infoForm" (ngSubmit)="CrearGrupo()" #form="ngForm">
+    <div>
+      <div>
+        <div>
           <div class="field" tabindex="1">
-            <b><h1>CREATE A NEW GROUP</h1></b>
-            <b><label for="username"> <i class="far fa-user"></i>NAME GROUP </label></b>
-            <input
-              name="username"
-              type="text"
-              placeholder="ex: TASK 1"
-              required
-              formControlName="descripcion"
-
-            />
+            <h1><b>CREATE A NEW GROUP</b></h1>
+            <b><label for="groupdescripcion"> <i class="far fa-user"></i>NAME GROUP </label></b>
+            <input name="groupdescripcion"
+                   type="text"
+                   placeholder="ex: TASK 1"
+                   required
+                   formControlName="descripcion" />
           </div>
-          <!-- <div class="field" tabindex="2">
-            <b><label for="email">
-              <i class="far fa-envelope"></i>DESCRIPTION
-            </label></b>
-            <input
-              name="email"
-              type="text"
-              placeholder="email@domain.com"
-              required
-            />
-          </div> -->
           <button type="submit">Save group</button>
           <div class="social-media"></div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
   </form>
-</body>
+</div>
