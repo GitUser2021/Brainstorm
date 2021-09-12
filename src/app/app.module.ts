@@ -12,7 +12,8 @@ import { LoginButtonComponent } from './Components/login-button/login-button.com
 import { LogoutButtonComponent } from './Components/logout-button/logout-button.component';
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { HomeComponent } from './Pages/home/home.component';
-import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component'
+import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component';
+import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component'
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component'
     LoginComponent,
     EnviaMailComponent,
     NavbarComponent,
+    CrearGrupoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
