@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div id="crearTarea-main">
+  <form [formGroup]="infoForm" (ngSubmit)="CrearTarea()" #form="ngForm">
+    <div>
+      <div>
+        <div>
+          <div class="field" tabindex="1">
+            <h1><b>CREATE A NEW TASK</b></h1>
+            <b><label for="taskdescripcion"> <i class="far fa-user"></i>NAME TASK </label></b>
+            <input name="taskdescripcion"
+                   type="text"
+                   placeholder="ex: TASK 1"
+                   required
+                   formControlName="descripcion" />
+          </div>
+          <button type="submit">Save task</button>
+          <div class="social-media"></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

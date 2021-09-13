@@ -1,7 +1,8 @@
 export interface Igrupo {
-  grupoId: any;
-  creadorId: any;
-  tareaId: any;
-  descripcion: string;
-  iconoId: any;
+  grupo_id: any;
+  creador_id: any;
+  descripcion: any;
+  icono_id: any;
+  tarea_id: any;
+  nombre: string;
   }

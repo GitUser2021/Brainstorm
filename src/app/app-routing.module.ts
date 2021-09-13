@@ -5,6 +5,7 @@ import { HomeComponent } from './Pages/home/home.component';
 import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component'
 import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
 import { MarketingComponent } from './Pages/marketing/marketing.component';
+import { CrearTareaComponent } from './Pages/crear-tarea/crear-tarea.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -20,6 +21,11 @@ const routes: Routes = [
   {
     path: 'CrearGrupo',
     component: CrearGrupoComponent,
+    canActivate: [AuthGuard]
+  }, 
+  {
+    path: 'CrearTarea',
+    component: CrearTareaComponent,
     canActivate: [AuthGuard]
   }
 ];
