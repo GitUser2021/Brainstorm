@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\Pages",
+    "\\src\\app\\Pages\\crear-grupo"
   ],
+  "SelectedNode": "\\src\\app\\Pages\\crear-grupo\\crear-grupo.component.html",
   "PreviewInSolutionExplorer": false
 }

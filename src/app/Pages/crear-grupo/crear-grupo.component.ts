@@ -20,11 +20,11 @@ export class CrearGrupoComponent implements OnInit {
   ngOnInit(): void {}
 
   infoForm = this.fb.group({
-    descripcion: ['', [Validators.required, Validators.minLength(3)]]
+    nombre: ['', [Validators.required, Validators.minLength(3)]]
   });
 
-  get descripcion() {
-    return this.infoForm.get('descripcion');
+  get nombre() {
+    return this.infoForm.get('nombre');
   }
   
   CrearGrupo() {
