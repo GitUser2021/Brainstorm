@@ -70,19 +70,22 @@ body {
     cursor: pointer;
   }
   .menu ul li.icon-dashboard {
-    background-image: url("http://www.entypo.com/images//gauge.svg");
+    background-image: url("https://icongr.am/material/home.svg?size=148&color=ffffff");
   }
   .menu ul li.icon-customers {
     background-image: url("http://www.entypo.com/images//briefcase.svg");
   }
   .menu ul li.icon-users {
-    background-image: url("http://www.entypo.com/images//users.svg");
+    background-image: url("https://icongr.am/material/account-group.svg?size=128&color=ffffff");
   }
-  .menu ul li.icon-settings {
-    background-image: url("http://www.entypo.com/images//tools.svg");
+  .menu ul li.icon-task {
+    background-image: url("https://icongr.am/entypo/add-to-list.svg?size=128&color=ffffff");
   }
   .menu ul li.icon-mail {
-    background-image: url("https://icongr.am/entypo/email.svg?size=128&color=ffffff");
+    background-image: url("https://icongr.am/material/email.svg?size=128&color=ffffff");
+  }
+  .menu ul li.icon-settings {
+    background-image: url("https://icongr.am/entypo/cog.svg?size=128&color=ffffff");
   }
   .menu ul li:hover {
     background-color: rgba(0, 0, 0, 0.1);

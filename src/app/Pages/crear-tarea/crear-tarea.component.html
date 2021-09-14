@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div id="crearTarea-main">
+<!-- <div id="crearTarea-main">
   <form [formGroup]="infoForm" (ngSubmit)="CrearTarea()" #form="ngForm">
     <div>
       <div>
@@ -19,4 +19,27 @@
       </div>
     </div>
   </form>
+</div> -->
+
+<form style="padding-left: 30%; padding-top: 7%"(ngSubmit)="CrearTarea()" autocomplete="off">
+  <input type='text' name="inputTodo" [(ngModel)]="inputTodo" required>
+  <label alt='New Task' placeholder='Task To-Do'></label>
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="submit">Add Task !</button>
+  </span>
+</form>
+
+
+<div *ngFor="let todo of todos; let i = index;" style="padding-left: 30%; padding-top:0.5%;">
+  <ul class="list">
+    <li class="list-item">
+      <input type="checkbox" class="hidden-box" id="{{i}}"/>
+      <label for="{{i}}" class="check--label">
+        <span class="check--label-box"></span>
+        <span class="check--label-text">{{todo.descripcion}}</span>
+        <span type="button" (click)="deleteTodo(i)" style="padding-left: 2%;" class="badge bg-danger">Delete</span>
+      </label>
+    </li>
+    </ul>
 </div>
+

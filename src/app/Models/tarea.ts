@@ -9,4 +9,5 @@ export interface Itarea {
   responsable: any;
   status_id: any;
   updated_at: any;
+  
   }
