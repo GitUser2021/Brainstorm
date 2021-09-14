@@ -7,7 +7,7 @@ import { Iinfo } from 'src/app/Models/info.mode';
 const HEADERS = {
   headers: new HttpHeaders({
     'Access-Control-Allow-Origin' : '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+    'Access-Control-Allow-Methods': 'GET, POST,',
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Credentials': 'true'
   })
@@ -23,7 +23,7 @@ export class EnviaMailServicesService {
   constructor(private _http: HttpClient) { }
   
   sendEmail(obj:any): Observable<Iinfo> {
-    return this._http.post<Iinfo>(`https://nodemon-app.herokuapp.com/sendFormData`,obj,HEADERS)
+    return this._http.post<Iinfo>('https://nodemon-app.herokuapp.com/sendFormData',obj,HEADERS)
 
   }
 

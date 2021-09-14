@@ -3,9 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\Pages",
-    "\\src\\app\\Pages\\crear-grupo"
+    "\\src\\app\\Models",
+    "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\app\\Pages\\crear-grupo\\crear-grupo.component.html",
+  "SelectedNode": "\\src\\app\\Models\\tarea.ts",
   "PreviewInSolutionExplorer": false
 }

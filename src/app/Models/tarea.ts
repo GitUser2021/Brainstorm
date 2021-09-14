@@ -1,13 +1,12 @@
 export interface Itarea {
-  tarea_id: any;
-  created_at: any;
+  tareaId: number;
+  createdAt: any;
   descripcion: string;
-  fecha_comprometida: any;
-  icono_id: any;
+  fechaComprometida: any;
+  iconoId: number;
   prioridad: any;
   puntaje: any;
   responsable: any;
-  status_id: any;
-  updated_at: any;
-  
+  statusId: any;
+  updatedAt: any;
   }

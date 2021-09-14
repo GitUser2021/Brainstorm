@@ -28,6 +28,7 @@ export class CrearGrupoComponent implements OnInit {
   }
   
   CrearGrupo() {
+    console.log('crear grupo...')
     this.crearGrupoService
       .SendGrupo(this.infoForm.value)
       .subscribe(grupo => console.log('grupo: -->', grupo));

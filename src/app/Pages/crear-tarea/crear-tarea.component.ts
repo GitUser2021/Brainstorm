@@ -3,7 +3,6 @@ import { CrearTareaService } from 'src/Services/crearTarea.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Itarea } from 'src/app/Models/tarea';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-crear-tarea',
@@ -14,22 +13,21 @@ import { ActivatedRoute } from '@angular/router';
 export class CrearTareaComponent implements OnInit {
   public subscription: Subscription;
   
-
   constructor(
     private crearTareaService: CrearTareaService,
     private fb: FormBuilder,
-    private route: ActivatedRoute
-  ) {}
-  nickNameRecibido: string = "";
+  ) { };
 
+  nickNameRecibido: string = "";
   today = new Date().getDate();
-  todos: Itarea[];
+  tasks: Itarea[];
   inputTodo: string = '';
+  isChecked: number = 0;
 
   ngOnInit(): void {
-    this.todos = [];
-    
-  }
+    this.tasks = [];
+    this.GetAllTasks();
+  };
 
   infoForm = this.fb.group({
     descripcion: ['', [Validators.required, Validators.minLength(3)]]
@@ -37,29 +35,49 @@ export class CrearTareaComponent implements OnInit {
 
   get descripcion() {
     return this.infoForm.get('descripcion');
-  }
+  };
 
   CrearTarea() {
-    console.log('tarea...');
     this.crearTareaService
       .SendTarea(this.infoForm.value)
-      .subscribe(tarea => console.log('tarea: -->', tarea));
-    this.todos.push({
-      tarea_id: null,
-      created_at: null,
-      descripcion: this.inputTodo,
-      fecha_comprometida: this.today + 10,
-      icono_id: null,
-      prioridad: null,
-      puntaje: null,
-      responsable: null,
-      status_id: null,
-      updated_at: null
-    });
-    this.inputTodo = '';
-  }
+      .subscribe(tarea => {
+        console.log('tarea: -->', tarea)
 
-  deleteTodo(id: number) {
-    this.todos = this.todos.filter((v, i) => i !== id);
-  }
-}
+        this.tasks.push({
+          tareaId: tarea.tareaId,
+          createdAt: tarea.createdAt,
+          descripcion: tarea.descripcion,
+          fechaComprometida: tarea.fechaComprometida,
+          iconoId: null,
+          prioridad: null,
+          puntaje: null,
+          responsable: null,
+          statusId: tarea.statusId,
+          updatedAt: tarea.updatedAt
+        });
+      });
+      this.inputTodo = '';
+  };
+
+  DeleteTask(tareaId) {
+    this.crearTareaService
+      .DeleteTarea(tareaId)
+      .subscribe(taskDeleted => {
+        console.log('taskDeleted: -->', taskDeleted);
+        this.tasks = this.tasks.filter( task => task.tareaId !== tareaId);
+      });
+  };
+
+  GetAllTasks() {
+    this.crearTareaService
+      .GetAllTasks()
+      .subscribe(allTasks => {
+        console.log('allTasks: -->', allTasks);
+        this.tasks = allTasks;
+      });
+  };
+
+  EditTask(tareaId) {
+
+  };
+};
