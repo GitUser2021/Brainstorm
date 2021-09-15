@@ -1,10 +1,13 @@
 <nav class="menu" tabindex="0">
 	<div class="smartphone-menu-trigger"></div>
   <header class="avatar">
-		<img src="{{profileInfo?.picture}}" />
+    <img id="avatar-img" src="{{profileInfo?.picture}}" />
+    <br>
     <h2>{{profileInfo?.name}}</h2>
     <br>
-    <app-logout-button></app-logout-button>
+    <div class='my-component'>
+      <app-logout-button></app-logout-button>
+    </div>
   </header>
 	<ul>
     <li [routerLink]="['/home']" tabindex="0" class="icon-dashboard"><b><span>Inicio</span></b></li>
