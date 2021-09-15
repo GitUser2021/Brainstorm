@@ -83,10 +83,6 @@ button {
   justify-content: space-around;
 }
 
-:not(.social-media) {
-  font-size: 14px;
-}
-
 .social-media span {
   font-size: 16px;
 }

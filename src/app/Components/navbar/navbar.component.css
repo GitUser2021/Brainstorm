@@ -202,4 +202,8 @@ body {
       pointer-events: none;
     }
   }
-  
+
+img {
+  min-width: 7rem;
+  min-height: 7rem;
+}

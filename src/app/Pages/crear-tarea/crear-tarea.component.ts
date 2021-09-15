@@ -159,9 +159,10 @@ export class TareaComponent implements OnInit {
         })
   };
 
-  EditTaskStatus(tareaId, obj) {
+  EditTaskStatus(task) {
+    task.statusId ? task.statusId = 0 : task.statusId = 1;
     this.TareaService
-      .EditTaskStatus(tareaId, { "statusId": obj })
+      .EditTaskStatus(task.tareaId, { "descripcion": task.descripcion, "statusId": task.statusId })
       .subscribe(tarea => {
         console.log('tarea editada: -->', tarea)
       });

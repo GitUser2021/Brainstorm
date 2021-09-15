@@ -10,14 +10,16 @@
 
 <div style="padding-left: 30%; padding-top:0.5%;">
   <ul class="list">
-    <li class="list-item" *ngFor="let task of tasks; let i = index;">
-      <input type="checkbox" [checked]="task.statusId" class="hidden-box" id="{{task.tareaId}}" />
-      <label for="{{task.tareaId}}" class="check--label">
+    <li class="list-item" *ngFor="let task of tasks; let i = index;" style="display:flex;">
+      <input type="checkbox" [checked]="task.statusId" class="hidden-box" id="{{task.tareaId}}" (click)="EditTaskStatus(task)" />
+      <label for="{{task.tareaId}}" class="check--label" style="width:100%;">
         <span class="check--label-box"></span>
         <span class="check--label-text">{{task.descripcion}}</span>
-        <span type="button" (click)="DeleteTask(task.tareaId)" style="padding-left: 2%;" class="badge bg-danger">Delete</span>
-        <span type="button" (click)="EditTask(task.tareaId)" style="padding-left: 2%;margin-left:5%;" class="badge bg-warning">Edit</span>
       </label>
+      <div class="btn-container">
+        <span type="button" (click)="DeleteTask(task.tareaId)" class="badge bg-danger btn-actions">Delete</span>
+        <span type="button" (click)="EditTask(task.tareaId)" style="margin-left:5%;" class="badge bg-warning btn-actions">Edit</span>
+      </div>
     </li>
     </ul>
 </div>

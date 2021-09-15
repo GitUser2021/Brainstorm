@@ -3,9 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\Models",
+    "\\src\\app\\Pages",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\app\\Models\\tarea.ts",
+  "SelectedNode": "\\src\\app\\app-routing.module.ts",
   "PreviewInSolutionExplorer": false
 }

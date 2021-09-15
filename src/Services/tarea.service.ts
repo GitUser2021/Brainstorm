@@ -36,12 +36,6 @@ export class TareaService {
   };
 
   EditTaskStatus(tareaId: number, obj: any): Observable<Itarea> {
-    console.log('asdsa')
-    if (obj.statuId) {
-      obj.statusId = 1;
-    } else {
-      obj.statusId = 0;
-    };
     return this._http.put<Itarea>('/api/tareas/' + tareaId, obj, HEADERS);
   };
 }
