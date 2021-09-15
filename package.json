@@ -29,6 +29,8 @@
     "rxjs": "~6.6.0",
     "save": "^2.4.0",
     "save-dev": "0.0.1-security",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.1.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

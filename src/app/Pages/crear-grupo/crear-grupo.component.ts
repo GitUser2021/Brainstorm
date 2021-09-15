@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrearGrupoServiceService } from 'src/Services/crearGrupo.service';
+import { GrupoServiceService } from 'src/Services/grupo.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -7,13 +7,13 @@ import { FormBuilder, Validators } from '@angular/forms';
   selector: 'app-crear-grupo',
   templateUrl: './crear-grupo.component.html',
   styleUrls: ['./crear-grupo.component.css'],
-  providers: [CrearGrupoServiceService]
+  providers: [GrupoServiceService]
 })
-export class CrearGrupoComponent implements OnInit {
+export class GrupoComponent implements OnInit {
   public subscription: Subscription;
 
   constructor(
-    private crearGrupoService: CrearGrupoServiceService,
+    private GrupoService: GrupoServiceService,
     private fb: FormBuilder
   ) {}
 
@@ -29,7 +29,7 @@ export class CrearGrupoComponent implements OnInit {
   
   CrearGrupo() {
     console.log('crear grupo...')
-    this.crearGrupoService
+    this.GrupoService
       .SendGrupo(this.infoForm.value)
       .subscribe(grupo => console.log('grupo: -->', grupo));
   }

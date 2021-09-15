@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { CrearTareaService } from 'src/Services/crearTarea.service';
+import { TareaService } from 'src/Services/tarea.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Itarea } from 'src/app/Models/tarea';
+import Swal from 'sweetalert2';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-crear-tarea',
   templateUrl: './crear-tarea.component.html',
   styleUrls: ['./crear-tarea.component.css'],
-  providers: [CrearTareaService]
+  providers: [TareaService]
 })
-export class CrearTareaComponent implements OnInit {
+export class TareaComponent implements OnInit {
   public subscription: Subscription;
   
   constructor(
-    private crearTareaService: CrearTareaService,
+    private TareaService: TareaService,
     private fb: FormBuilder,
   ) { };
 
@@ -38,7 +40,7 @@ export class CrearTareaComponent implements OnInit {
   };
 
   CrearTarea() {
-    this.crearTareaService
+    this.TareaService
       .SendTarea(this.infoForm.value)
       .subscribe(tarea => {
         console.log('tarea: -->', tarea)
@@ -60,16 +62,49 @@ export class CrearTareaComponent implements OnInit {
   };
 
   DeleteTask(tareaId) {
-    this.crearTareaService
+     Swal.fire({  
+      title: 'Are you sure want to remove?',  
+      text: 'You will not be able to recover this file!',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'Yes, delete it!',  
+      cancelButtonText: 'No, keep it'  
+    }).then((result) => {  
+      if (result.value) {
+
+
+        
+    this.TareaService
       .DeleteTarea(tareaId)
       .subscribe(taskDeleted => {
         console.log('taskDeleted: -->', taskDeleted);
         this.tasks = this.tasks.filter( task => task.tareaId !== tareaId);
       });
+
+
+
+        Swal.fire(  
+          'Deleted!',  
+          'Your task has been deleted.',  
+          'success'  
+        )  
+      } else if (result.dismiss === Swal.DismissReason.cancel) {  
+        Swal.fire(  
+          'Cancelled',  
+          'Your task is safe :)',  
+          'error'  
+        )  
+      }  
+    })  
+
+
+
+
+
   };
 
   GetAllTasks() {
-    this.crearTareaService
+    this.TareaService
       .GetAllTasks()
       .subscribe(allTasks => {
         console.log('allTasks: -->', allTasks);
@@ -79,5 +114,56 @@ export class CrearTareaComponent implements OnInit {
 
   EditTask(tareaId) {
 
+    Swal.fire({
+      title: 'Edit your task.',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Edit',
+      showLoaderOnConfirm: true,
+          preConfirm: (task) => {
+
+            this.TareaService
+               .EditTask( tareaId, { "descripcion": task })
+               .subscribe(tarea => {
+                console.log('tarea editada: -->', tarea)
+
+                 // elmino la tarea vieja antes de pushear la tarea editada.
+                 this.tasks = this.tasks.filter(task => task.tareaId != tareaId);
+                 
+                this.tasks.push({
+                  tareaId: tarea.tareaId,
+                  createdAt: tarea.createdAt,
+                  descripcion: tarea.descripcion,
+                  fechaComprometida: tarea.fechaComprometida,
+                  iconoId: null,
+                  prioridad: null,
+                  puntaje: null,
+                  responsable: null,
+                  statusId: tarea.statusId,
+                  updatedAt: tarea.updatedAt
+                });
+
+                 this.tasks = _.orderBy(this.tasks, ['tareaId'], ['asc']);
+          });
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: `Task edited`,
+            })
+          }
+        })
+  };
+
+  EditTaskStatus(tareaId, obj) {
+    this.TareaService
+      .EditTaskStatus(tareaId, { "statusId": obj })
+      .subscribe(tarea => {
+        console.log('tarea editada: -->', tarea)
+      });
   };
 };

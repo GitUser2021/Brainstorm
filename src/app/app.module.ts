@@ -13,9 +13,9 @@ import { LogoutButtonComponent } from './Components/logout-button/logout-button.
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { HomeComponent } from './Pages/home/home.component';
 import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component';
-import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
+import { GrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
 import { MarketingComponent } from './Pages/marketing/marketing.component';
-import { CrearTareaComponent } from './Pages/crear-tarea/crear-tarea.component';
+import { TareaComponent } from './Pages/crear-tarea/crear-tarea.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,9 @@ import { CrearTareaComponent } from './Pages/crear-tarea/crear-tarea.component';
     LoginComponent,
     EnviaMailComponent,
     NavbarComponent,
-    CrearGrupoComponent,
+    GrupoComponent,
     MarketingComponent,
-    CrearTareaComponent
+    TareaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

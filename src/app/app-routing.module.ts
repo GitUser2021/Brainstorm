@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { HomeComponent } from './Pages/home/home.component';
 import {EnviaMailComponent} from './Pages/envia-mail/envia-mail.component'
-import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
+import { GrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
 import { MarketingComponent } from './Pages/marketing/marketing.component';
-import { CrearTareaComponent } from './Pages/crear-tarea/crear-tarea.component';
+import { TareaComponent } from './Pages/crear-tarea/crear-tarea.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -20,12 +20,12 @@ const routes: Routes = [
   , 
   {
     path: 'CrearGrupo',
-    component: CrearGrupoComponent,
+    component: GrupoComponent,
     canActivate: [AuthGuard]
   }, 
   {
     path: 'CrearTarea',
-    component: CrearTareaComponent,
+    component: TareaComponent,
     canActivate: [AuthGuard]
   }
 ];

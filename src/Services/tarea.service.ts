@@ -16,7 +16,7 @@ const HEADERS = {
   providedIn: 'root'
 })
 
-export class CrearTareaService {
+export class TareaService {
   constructor(private _http: HttpClient) { }
 
   SendTarea(obj: any): Observable<Itarea> {
@@ -32,6 +32,16 @@ export class CrearTareaService {
   };
 
   EditTask(tareaId: number, obj: any): Observable<Itarea> {
+    return this._http.put<Itarea>('/api/tareas/' + tareaId, obj, HEADERS);
+  };
+
+  EditTaskStatus(tareaId: number, obj: any): Observable<Itarea> {
+    console.log('asdsa')
+    if (obj.statuId) {
+      obj.statusId = 1;
+    } else {
+      obj.statusId = 0;
+    };
     return this._http.put<Itarea>('/api/tareas/' + tareaId, obj, HEADERS);
   };
 }

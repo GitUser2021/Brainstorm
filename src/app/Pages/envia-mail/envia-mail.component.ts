@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { EnviaMailServicesService } from 'src/Services/envia-mail-services.service';
+import { EnviaMailServicesService } from 'src/Services/envia-mail-services';
 import { Subscription } from 'rxjs';
 import {FormGroup, FormControl, FormBuilder, Validators, FormArray} from '@angular/forms';
 

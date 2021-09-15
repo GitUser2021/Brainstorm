@@ -16,7 +16,7 @@ const HEADERS = {
   providedIn: 'root'
 })
 
-export class CrearGrupoServiceService {
+export class GrupoServiceService {
   constructor(private _http: HttpClient) { }
 
   SendGrupo(obj: any): Observable<Igrupo> {
