@@ -28,7 +28,7 @@ import { TareaComponent } from './Pages/crear-tarea/crear-tarea.component';
     NavbarComponent,
     GrupoComponent,
     MarketingComponent,
-    TareaComponent
+    TareaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +37,7 @@ import { TareaComponent } from './Pages/crear-tarea/crear-tarea.component';
     FormsModule,
     AuthModule.forRoot({ // <-- agregar esto.
       ...env.auth,       // <-- agregar esto.
+      
     }),                  // <-- agregar esto.
     ReactiveFormsModule
 

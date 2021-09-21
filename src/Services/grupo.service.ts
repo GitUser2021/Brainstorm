@@ -22,4 +22,8 @@ export class GrupoServiceService {
   SendGrupo(obj: any): Observable<Igrupo> {
     return this._http.post<Igrupo>('/api/grupos', obj, HEADERS)
   }
+
+  GetAllGroups() {
+    return this._http.get<Igrupo[]>('/api/grupos');
+  };
 }

@@ -20,3 +20,27 @@
     </div>
   </form>
 </div>
+
+<div  style="text-align:center; margin-left:30%; margin-bottom:20%;"  *ngFor="let group of Groups; let i = index;">
+  <form  [formGroup]="infoFormTask" (ngSubmit)="CrearTarea()" autocomplete="off">
+      <input type='text' name="inputTodo" [(ngModel)]="inputTodo" required formControlName="descripcion" >
+  </form>
+    <details>
+    <summary>{{group.nombre}}</summary>
+    <ul class="list">
+      <li class="list-item" style="display:flex;"  *ngFor="let task of tasks; let i = index;" >
+        <input type="checkbox" id="{{task.tareaId}}" class="hidden-box"/>
+        <label for="{{task.tareaId}}" class="check--label"  >
+          <span class="check--label-box"></span>
+          <span class="check--label-text">{{task.descripcion}}</span>
+        </label>
+        <div class="btn-container">
+          <span type="button"  class="badge bg-danger btn-actions">Delete</span>
+          <span type="button"  style="margin-left:5%;" class="badge bg-warning btn-actions">Edit</span>
+        </div>
+      </li>
+      </ul>
+  </details>
+</div>
+
+  

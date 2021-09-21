@@ -30,7 +30,9 @@ export class TareaService {
   GetAllTasks() {
     return this._http.get<Itarea[]>('/api/tareas');
   };
-
+  GetTaskById(tareaId: number) {
+    return this._http.get<Itarea>('/api/tareas/' + tareaId);
+  };
   EditTask(tareaId: number, obj: any): Observable<Itarea> {
     return this._http.put<Itarea>('/api/tareas/' + tareaId, obj, HEADERS);
   };
