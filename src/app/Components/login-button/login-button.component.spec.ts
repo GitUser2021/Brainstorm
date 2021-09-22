@@ -40,15 +40,15 @@ describe('LoginButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it("should call the method loginWithRedirect", async(() => {
-  //   spyOn(component, "loginWithRedirect");
+  it("should call the method loginWithRedirect", async(() => {
+    spyOn(component, "loginWithRedirect");
     
-  //   let button = fixture.debugElement.nativeElement.querySelector("button");
-  //   button.click();
+    let button = fixture.debugElement.nativeElement.querySelector("button");
+    button.click();
     
-  //   fixture.whenStable().then(() => {
-  //   expect(component.loginWithRedirect).toHaveBeenCalled();
-  //   })
-  // }));
+    fixture.whenStable().then(() => {
+    expect(component.loginWithRedirect).toHaveBeenCalled();
+    })
+  }));
     
 });
