@@ -37,7 +37,8 @@ import { TareaComponent } from './Pages/crear-tarea/crear-tarea.component';
     FormsModule,
     AuthModule.forRoot({ // <-- agregar esto.
       ...env.auth,       // <-- agregar esto.
-      
+    cacheLocation: 'localstorage',
+    useRefreshTokens: true
     }),                  // <-- agregar esto.
     ReactiveFormsModule
 
