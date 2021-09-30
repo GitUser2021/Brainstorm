@@ -1,0 +1,51 @@
+<div style="display:flex;">
+
+  <app-navbar></app-navbar>
+
+  <div id="mis-tareas-main">
+    <div id="titulo-container">
+      <h1>mis tareas</h1>
+      <button (click)="ShowForm()" class="btn btn-primary">crear tarea</button>
+    </div>
+
+    <main>
+
+      <div id="tareas">
+        <div id="titulo-container">
+        </div>
+        <main>
+          <div *ngIf="tasks.length >= 1" id="tareas-main">
+            <div id="task-frame">
+              <div id="task-frame-container">
+
+                <div *ngFor="let task of tasks; let i = index;" style="height: 10rem; border-radius: 10px; background: cornflowerblue; padding: 10px; margin-bottom: 10px;" >
+                  <div class="task-container">
+                    <input type="checkbox" name="task1" value="" style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); transform: scale(1.5); /* padding: 10px; */ vertical-align: text-top;" />
+                    <h2>{{ task.descripcion }}</h2>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span> sub tarea ... </span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span> sub tarea ... </span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span> sub tarea ... </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <app-crear-tarea (showForm)="receiveMessage($event)" (tasksList)="receiveTaskList($event)" [ngClass]="showForm ? 'showForm' : 'hideForm' "></app-crear-tarea>
+    </main>
+  </div>
+</div>
+
+
+
+

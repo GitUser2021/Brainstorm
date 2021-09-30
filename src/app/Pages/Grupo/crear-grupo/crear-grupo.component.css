@@ -5,16 +5,19 @@
 }
 
 #crearGrupo-main {
-  height: 100vh;
   display: flex;
   align-items: center;
-  margin-right: 30%;
+  border: 1px solid #080c0873;
+  box-shadow: 1px 2px 6px 2px #00000073;
+  border-radius: 5%;
+  height: 87vh;
+  width: 30rem;
+  padding: 2rem;
 }
 
 form {
   text-align: center;
-  width: 25%;
-  margin-left: 45%;
+  width: 100%;
 }
 
   form div, form label, form input, form textarea {
@@ -63,7 +66,6 @@ textarea {
   }
 
 button {
-  background: #2f4ad0;
   margin: 16px 0 50px 0;
   padding: 8px 16px;
   color: #fff;
@@ -71,6 +73,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 8px 6px -6px #555;
+  margin-right: 20px;
 }
 
   button:hover {

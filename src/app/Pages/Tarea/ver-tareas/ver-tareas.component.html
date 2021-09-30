@@ -1,0 +1,143 @@
+<div style="display:flex;">
+
+  <app-navbar></app-navbar>
+
+  <div id="mis-tareas-main">
+    <div id="grupo-main">
+      <h2>GRUPO: {{groupName}}</h2>
+      <button (click)="ShowForm()" class="btn btn-primary">CREAR TAREA</button>
+    </div>
+
+
+    <div id="info-main">
+      <div id="miembros">
+        <div id="titulo-miembros-container">
+          <h2>MIEMBROS</h2>
+        </div>
+
+        <div id="miembros-container">
+          <span>Miembro #1</span>
+          <span>Miembro #2</span>
+          <span>Miembro #3</span>
+        </div>
+
+      </div>
+
+      <div id="tareas">
+        <div id="titulo-container">
+          <h2>MIS TAREAS</h2>
+        </div>
+        <main>
+          <div id="tareas-main">
+            <div id="task-frame">
+              <div id="task-frame-container">
+
+                <div class="task-container">
+                  <input type="checkbox" name="task1" value="" style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); transform: scale(1.5); /* padding: 10px; */ vertical-align: text-top;" />
+                  <h2>Tarea #1</h2>
+                </div>
+                <div [routerLink]="['/VerTarea/tarea1']" id="tarea1-main" style="height: 10rem; border-radius: 10px; background: cornflowerblue; padding: 10px; margin-bottom: 10px; ">
+
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 1...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 2...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 3...</span>
+                  </div>
+                </div>
+
+                <div class="task-container">
+                  <input type="checkbox" name="task1" value="" style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); transform: scale(1.5); /* padding: 10px; */ vertical-align: text-top;" />
+                  <h2>Tarea #2</h2>
+                </div>
+                <div [routerLink]="['/VerTarea/tarea1']" id="tarea1-main" style="height: 10rem; border-radius: 10px; background: cornflowerblue; padding: 10px; margin-bottom: 10px; ">
+
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 1...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 2...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 3...</span>
+                  </div>
+                </div>
+
+                <div class="task-container">
+                  <input type="checkbox" name="task1" value="" style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); transform: scale(1.5); /* padding: 10px; */ vertical-align: text-top;" />
+                  <h2>Tarea #3</h2>
+                </div>
+                <div [routerLink]="['/VerTarea/tarea1']" id="tarea1-main" style="height: 10rem; border-radius: 10px; background: cornflowerblue; padding: 10px; margin-bottom: 10px; ">
+
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 1...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 2...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 3...</span>
+                  </div>
+                </div>
+
+                <div class="task-container">
+                  <input type="checkbox" name="task1" value="" style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); transform: scale(1.5); /* padding: 10px; */ vertical-align: text-top;" />
+                  <h2>Tarea #1</h2>
+                </div>
+                <div [routerLink]="['/VerTarea/tarea1']" id="tarea1-main" style="height: 10rem; border-radius: 10px; background: cornflowerblue; padding: 10px; margin-bottom: 10px; ">
+
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 1...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 2...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 3...</span>
+                  </div>
+                </div>
+
+                <div class="task-container">
+                  <input type="checkbox" name="task1" value="" style="-ms-transform: scale(2); -moz-transform: scale(2); -webkit-transform: scale(2); -o-transform: scale(2); transform: scale(1.5); /* padding: 10px; */ vertical-align: text-top;" />
+                  <h2>Tarea #1</h2>
+                </div>
+                <div [routerLink]="['/VerTarea/tarea1']" id="tarea1-main" style="height: 10rem; border-radius: 10px; background: cornflowerblue; padding: 10px; margin-bottom: 10px; ">
+
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 1...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 2...</span>
+                  </div>
+                  <div class="subtask-container">
+                    <input type="checkbox" name="subtask1" value="" />
+                    <span>sub tarea 3...</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+  </div>
+</div>

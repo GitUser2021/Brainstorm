@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TareaService } from 'src/Services/tarea.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -12,7 +12,7 @@ import * as _ from 'lodash';
   styleUrls: ['./crear-tarea.component.css'],
   providers: [TareaService]
 })
-export class TareaComponent implements OnInit {
+export class CrearTareaComponent implements OnInit {
   public subscription: Subscription;
 
   constructor(private TareaService: TareaService, private fb: FormBuilder) {}
@@ -20,7 +20,7 @@ export class TareaComponent implements OnInit {
   nickNameRecibido: string = '';
   today = new Date().getDate();
   tasks: Itarea[];
-  inputTodo: string = '';
+  inputTask: string = '';
   isChecked: number = 0;
   flag: string = '';
 
@@ -29,10 +29,21 @@ export class TareaComponent implements OnInit {
     this.GetAllTasks();
   }
 
+  @Output() showForm: EventEmitter<boolean> = new EventEmitter();
+  @Output() tasksList: EventEmitter<any> = new EventEmitter();
+
+  HideForm() {
+    this.showForm.emit(false);
+  };
+
   infoForm = this.fb.group({
+    nombre: ['', [Validators.required, Validators.minLength(3)]],
     descripcion: ['', [Validators.required, Validators.minLength(3)]]
   });
 
+  get nombre() {
+    return this.infoForm.get('nombre');
+  }
   get descripcion() {
     return this.infoForm.get('descripcion');
   }
@@ -41,8 +52,9 @@ export class TareaComponent implements OnInit {
     this.TareaService.SendTarea(this.infoForm.value).subscribe(tarea => {
       console.log('tarea: -->', tarea);
       this.PushTask(tarea);
+      this.tasksList.emit(this.tasks);
     });
-    this.inputTodo = '';
+    this.inputTask = '';
   }
 
   DeleteTask(tareaId) {

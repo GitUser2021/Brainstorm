@@ -1,0 +1,30 @@
+<div style="display:flex;">
+
+  <app-navbar></app-navbar>
+
+  <div id="mis-grupos-main">
+    <div id="titulo-container">
+      <h1>MIS GRUPOS</h1>
+      <button (click)="ShowForm()" class="btn btn-primary">CREAR GRUPO</button>
+    </div>
+
+    <main>
+
+      <div *ngIf="Groups.length >= 1" id="grupos-main">
+        <div id="grupos-container">
+
+          <div *ngFor="let group of Groups; let i = index;" [routerLink]="['/Tareas/istea']" id="grupo1-main" style="height: 10rem; border-radius: 10%; background: cornflowerblue; text-align: center; padding: 10px; margin-bottom: 10px; ">
+            <h2>{{ group.nombre }}</h2>
+            <span>Descripcion grupo...</span>
+          </div>
+
+        </div>
+      </div>
+
+      <app-crear-grupo (showForm)="receiveMessage($event)" (groupList)="receiveGroupList($event)" [ngClass]="showForm ? 'showForm' : 'hideForm' "></app-crear-grupo>
+
+    </main>
+
+  </div>
+
+</div>

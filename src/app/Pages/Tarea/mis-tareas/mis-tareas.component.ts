@@ -1,43 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { GrupoServiceService } from 'src/Services/grupo.service';
-import { Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Igrupo } from 'src/app/Models/grupo';
 import { TareaService } from 'src/Services/tarea.service';
 import { Itarea } from 'src/app/Models/tarea';
 
 @Component({
-  selector: 'app-crear-grupo',
-  templateUrl: './crear-grupo.component.html',
-  styleUrls: ['./crear-grupo.component.css'],
-  providers: [GrupoServiceService]
+  selector: 'app-mis-tareas',
+  templateUrl: './mis-tareas.component.html',
+  styleUrls: ['./mis-tareas.component.css'],
+  providers: [TareaService]
 })
-export class GrupoComponent implements OnInit {
-  public subscription: Subscription;
+export class MisTareasComponent implements OnInit {
+  showForm: boolean;
 
   constructor(
-    private GrupoService: GrupoServiceService,
     private fb: FormBuilder,private TareaService:TareaService
   ) {}
-  Groups: Igrupo[];
   tasks: Itarea[];
   inputTodo: string = '';
 
-
   ngOnInit(): void {
-    this.Groups = []; 
-    this.getAllGroups()
     this.tasks = [];
-    this.GetAllTasks()
-
+    this.GetAllTasks();
+    this.showForm = false;
   }
 
-  infoForm = this.fb.group({
-    nombre: ['', [Validators.required, Validators.minLength(3)]]
-  });
+  receiveMessage($event){
+    this.showForm = $event;
+  }
 
-  
-  infoFormTask = this.fb.group({
+  receiveTaskList($event) {
+    this.tasks = $event;
+  }
+
+  ShowForm():void {
+    this.showForm = true;
+  };
+
+  infoForm = this.fb.group({
+    nombre: ['', [Validators.required, Validators.minLength(3)]],
     descripcion: ['', [Validators.required, Validators.minLength(3)]]
   });
 
@@ -47,26 +47,10 @@ export class GrupoComponent implements OnInit {
   get descripcion() {
     return this.infoForm.get('descripcion');
   };
-  
-  CrearGrupo() {
-    console.log('crear grupo...')
-    this.GrupoService
-      .SendGrupo(this.infoForm.value)
-      .subscribe(grupo => console.log('grupo: -->', grupo));
-  }
-
-  getAllGroups(){
-    this.GrupoService
-    .GetAllGroups()
-    .subscribe(allGroups => {
-      console.log('allTasks: -->', allGroups);
-      this.Groups = allGroups;
-    });
-  };
 
   CrearTarea() {
     this.TareaService
-      .SendTarea(this.infoFormTask.value)
+      .SendTarea(this.infoForm.value)
       .subscribe(tarea => {
         console.log('tarea: -->', tarea)
 
