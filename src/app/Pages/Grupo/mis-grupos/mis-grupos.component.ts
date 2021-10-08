@@ -1,27 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { GrupoServiceService } from 'src/Services/grupo.service';
+import { GrupoService } from 'src/Services/grupo.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Igrupo } from 'src/app/Models/grupo';
 import { TareaService } from 'src/Services/tarea.service';
+import Swal from 'sweetalert2';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-mis-grupo',
   templateUrl: './mis-grupos.component.html',
   styleUrls: ['./mis-grupos.component.css'],
-  providers: [GrupoServiceService]
+  providers: [GrupoService]
 })
 export class MisGruposComponent implements OnInit {
   showForm: boolean;
+    oldName: string = '';
 
   constructor(
-    private GrupoService: GrupoServiceService,
+    private GrupoService: GrupoService,
     private fb: FormBuilder,private TareaService:TareaService
   ) {}
-  Groups: Igrupo[];
+  groups: Igrupo[];
   inputTodo: string = '';
 
   ngOnInit(): void {
-    this.Groups = []; 
+    this.groups = []; 
     this.GetAllGroups();
     this.showForm = false;
   }
@@ -31,11 +34,12 @@ export class MisGruposComponent implements OnInit {
   }
 
   receiveGroupList($event) {
-    this.Groups = $event;
+    this.groups.push($event);
   };
 
-  ShowForm():void {
+  ShowForm(): void {
     this.showForm = true;
+    document.getElementById('popup-tarea-backshadow').style.display = 'block';
   };
 
   infoForm = this.fb.group({
@@ -52,20 +56,117 @@ export class MisGruposComponent implements OnInit {
   get descripcion() {
     return this.infoForm.get('descripcion');
   };
-  
-  CrearGrupo() {
-    console.log('crear grupo...')
-    this.GrupoService
-      .SendGrupo(this.infoForm.value)
-      .subscribe(grupo => console.log('grupo: -->', grupo));
-  }
 
   GetAllGroups(){
     this.GrupoService
     .GetAllGroups()
     .subscribe(allGroups => {
       console.log('allGroups: -->', allGroups);
-      this.Groups = allGroups;
+      this.groups = allGroups;
+        setTimeout(() => {
+          MisGruposComponent.SetEvents();
+        }, 0)
     });
   };
+
+  DeleteGroup(grupoId) {
+    this.DeleteGroupModal(grupoId)
+  }
+
+  private DeleteGroupModal(groupId: any) {
+    Swal.fire({
+      title: 'Are you sure want to remove?',
+      text: 'You will not be able to recover this file!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then(result => {
+      if (result.value) {
+        this.GrupoService.DeleteGroup(groupId).subscribe(groupDeleted => {
+          this.groups = this.groups.filter(group => group.grupoId !== groupId);
+        });
+        Swal.fire('Deleted!', 'Your group has been deleted.', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelled', 'Your group is safe :)', 'error');
+      }
+    });
+  }
+
+  static SetEvents() {
+    for (let i = 0; i < document.getElementsByClassName('group-card').length; i++) {
+      document.getElementsByClassName('group-card')[i].addEventListener('mouseenter', e => {
+        let id = (<HTMLInputElement>e.currentTarget).dataset.id;
+        document.getElementById('icons-' + id).style.display = 'block'
+      })
+    }
+
+    for (let i = 0; i < document.getElementsByClassName('group-card').length; i++) {
+      document.getElementsByClassName('group-card')[i].addEventListener('mouseleave', e => {
+        let id = (<HTMLInputElement>e.currentTarget).dataset.id;
+        document.getElementById('icons-' + id).style.display = 'none';
+      })
+    }
+  }
+
+  EditGroup(grupoId, oldName) {
+    //this.GrupoService.GetGroupById(grupoId).subscribe(groupById => {
+    //  this.oldName = groupById.descripcion;
+    //  this.ResultGroupEdit(grupoId);
+    //});
+    this.oldName = oldName;
+    this.ResultGroupEdit(grupoId);
+  }
+
+  private ResultGroupEdit(grupoId: any) {
+    this.EditGroupModal(grupoId).then(result => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: `Group edited`
+        });
+      }
+    });
+  }
+
+  private EditGroupModal(grupoId: any) {
+    return Swal.fire({
+      title: 'Edit your group.',
+      input: 'text',
+      inputValue: this.oldName?.toString(),
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Edit',
+      showLoaderOnConfirm: true,
+      preConfirm: group => {
+        this.PreConfirmTask(grupoId, group);
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    });
+  }
+
+  private PreConfirmTask(grupoId: any, group: any) {
+    this.GrupoService.EditGroup(grupoId, { nombre: group }).subscribe(
+      group => {
+        this.groups = this.groups.filter(group => group.grupoId != grupoId);
+        this.groups.push(group);
+        this.groups = _.orderBy(this.groups, ['grupoId'], ['asc']);
+        setTimeout(() => {
+          MisGruposComponent.SetEvents();
+        }, 0)
+      }
+    );
+  }
+
+  EditGroupStatus(group) {
+    group.statusId ? (group.statusId = 0) : (group.statusId = 1);
+    this.GrupoService.EditGroupStatus(group.tareaId, {
+      descripcion: group.descripcion,
+      statusId: group.statusId
+    }).subscribe(group => {
+      console.log('grupo editado: -->', group);
+    });
+  }
+
 }

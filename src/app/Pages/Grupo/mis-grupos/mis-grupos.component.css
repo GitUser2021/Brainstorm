@@ -46,7 +46,7 @@
   overflow-y: auto;
 }
 
-  #grupos-container div {
+  #grupos-container > div {
     cursor: pointer;
     margin-right: 10px;
   }
@@ -65,4 +65,28 @@ main{
     opacity:0;
     margin-top:-34rem;
     transition: 300ms linear;
+}
+
+.icons-container {
+  position: absolute;
+  top: -6px;
+  right: 0;
+}
+
+  .icons-container svg {
+    width: 1.7rem;
+  }
+
+.icons-container {
+  display: none;
+}
+
+  .icons-container svg:hover {
+    transform: scale(1.5);
+  }
+
+
+.group-container {
+  text-align: center;
+  position: relative;
 }

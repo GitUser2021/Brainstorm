@@ -13,6 +13,11 @@
   height: 87vh;
   width: 30rem;
   padding: 2rem;
+  /**/
+  background: lightgray;
+  position: absolute;
+  top: 4rem;
+  left: 28rem;
 }
 
 form {
@@ -487,4 +492,14 @@ body {
   font-weight: normal;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+#popup-tarea-backshadow {
+  display: none;
+  background: #000c0c82;
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  width: 100vw;
+  height: 100vh;
 }

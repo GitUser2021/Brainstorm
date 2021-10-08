@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Itarea } from '../app/Models/tarea';
 import { TokenService } from './token.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +30,7 @@ export class TareaService {
   };
 
   DeleteTarea(tareaId: number): Observable<Itarea> {
-    return this._http.delete<Itarea>('/api/tareas/' + tareaId);
+    return this._http.delete<Itarea>('/api/tareas/' + tareaId, this.HEADERS);
   };
 
   GetAllTasks() {

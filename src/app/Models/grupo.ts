@@ -1,5 +1,5 @@
 export interface Igrupo {
-  grupo_id: any;
+  grupoId: any;
   creador_id: any;
   descripcion: any;
   icono_id: any;

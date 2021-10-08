@@ -1,41 +1,36 @@
-import { Component, EventEmitter,Output, OnInit } from '@angular/core';
-import { GrupoServiceService } from 'src/Services/grupo.service';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { GrupoService } from 'src/Services/grupo.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Igrupo } from 'src/app/Models/grupo';
 import { TareaService } from 'src/Services/tarea.service';
-import { Itarea } from 'src/app/Models/tarea';
+import { MisGruposComponent } from '../mis-grupos/mis-grupos.component';
 
 @Component({
   selector: 'app-crear-grupo',
   templateUrl: './crear-grupo.component.html',
   styleUrls: ['./crear-grupo.component.css'],
-  providers: [GrupoServiceService]
+  providers: [GrupoService]
 })
 
 export class CrearGrupoComponent implements OnInit {
   public subscription: Subscription;
- 
+
   constructor(
-    private GrupoService: GrupoServiceService,
+    private GrupoService: GrupoService,
     private fb: FormBuilder, private TareaService: TareaService
   ) { }
 
-  Groups: Igrupo[];
-  tasks: Itarea[];
   inputName: string = '';
   inputDescription: string = '';
 
-  ngOnInit(): void {
-    this.Groups = []; 
-    this.getAllGroups();
-  }
+  ngOnInit(): void { }
 
   @Output() showForm: EventEmitter<boolean> = new EventEmitter();
   @Output() groupList: EventEmitter<any> = new EventEmitter();
 
   HideForm() {
     this.showForm.emit(false);
+    document.getElementById('popup-tarea-backshadow').style.display = 'none';
   };
 
   infoForm = this.fb.group({
@@ -49,34 +44,16 @@ export class CrearGrupoComponent implements OnInit {
   get description() {
     return this.infoForm.get('description');
   };
-  
+
   CrearGrupo() {
     this.GrupoService.SendGrupo(this.infoForm.value).subscribe(grupo => {
       console.log('grupo: -->', grupo);
-      this.PushGroup(grupo);
-      this.groupList.emit(this.Groups);
-    });
-    this.inputName = "";
-    this.inputDescription = "";
-  };
-
-  getAllGroups(){
-    this.GrupoService
-    .GetAllGroups()
-    .subscribe(allGroups => {
-      console.log('allGroups: -->', allGroups);
-      this.Groups = allGroups;
+      this.groupList.emit(grupo);
+      this.inputName = "";
+      this.inputDescription = "";
+      setTimeout(() => {
+        MisGruposComponent.SetEvents();
+      }, 0)
     });
   };
-
-  private PushGroup(grupo: Igrupo) {
-    this.Groups.push({
-       grupo_id: null,
-       creador_id: null,
-       descripcion: grupo.descripcion,
-       icono_id: null,
-       tarea_id: null,
-       nombre: grupo.nombre
-    });
-  }
 }

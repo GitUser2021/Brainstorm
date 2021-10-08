@@ -15,6 +15,11 @@
   padding: 2rem;
   margin-top: 8px;
   margin-right: 4rem;
+  /**/
+  background: lightgray;
+  position: absolute;
+  top: 4rem;
+  left: 28rem;
 }
 
 form {
@@ -519,4 +524,14 @@ body {
   font-weight: normal;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+#popup-tarea-backshadow {
+  display:none;
+  background: #000c0c82;
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  width: 100vw;
+  height: 100vh;
 }

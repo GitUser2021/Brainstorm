@@ -1,137 +1,168 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:700|Crimson+Text:400,400italic,700italic,700);
-html {
-  font-family: "Crimson Text", serif;
-  font-size: 18px;
-  line-height: 1.3;
+::-webkit-scrollbar {
+  width: 10px;
+  margin-left: 20px;
 }
-@media (max-width: 520px) {
-  html {
-    font-size: 16px;
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: cornflowerblue;
+  border-radius: 10px;
+}
+
+#mis-tareas-main {
+  width: 100%;
+}
+
+#titulo-container {
+  margin-top: 10px;
+}
+
+  #titulo-container h2 {
+    text-align: center;
+    font-size: 1rem;
   }
+
+#titulo-miembros-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 10px;
 }
 
-.page-wrap {
-  max-width: 1000px;
-  margin: 20px auto;
-  padding: 20px;
-}
 
-.article-header {
-  text-align: center;
-}
-@media (max-width: 520px) {
-  .article-header h2 {
-    font-size: 1.2rem;
+  #titulo-miembros-container h2 {
+    font-size: 1rem;
   }
+
+#tareas-main {
+  border: 1px solid #080c0873;
+  box-shadow: 1px 2px 6px 2px #00000073;
+  width: 80%;
+  padding: 20px 10px 20px 20px;
+  border-radius: 2%;
 }
 
-.classification-header {
-  text-transform: uppercase;
-  color: red;
-  letter-spacing: 0.1rem;
+#task-frame {
+  height: 70vh;
+  width: 100%;
+  overflow-y: auto;
 }
 
-.intro-ps {
-  -moz-columns: 2;
-       columns: 2;
-  margin: 0 0 2rem 0;
-}
-.intro-ps > p:first-child {
-  text-indent: 0;
-}
-.intro-ps > p:first-child strong {
-  font-size: 125%;
-  letter-spacing: -1px;
-  line-height: 0;
-}
-@media (max-width: 520px) {
-  .intro-ps {
-    -moz-columns: 1;
-         columns: 1;
+  #task-frame > div {
+    cursor: pointer;
+    margin-right: 10px;
   }
-}
 
-.in-brief {
+  #task-frame h2 {
+    display: inline;
+    margin-left: 10px;
+  }
+
+.task-container {
   text-align: center;
-  margin: 0 0 2rem 0;
-}
-.in-brief h3 {
-  text-transform: uppercase;
-  text-align: center;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  display: inline-block;
-  padding: 0 20px;
-  color: #999;
-  letter-spacing: 0.2rem;
-  font-size: 80%;
-  margin: 0;
-  background: white;
   position: relative;
-  top: 1px;
 }
 
-.in-brief-content {
-  -moz-columns: 3;
-       columns: 3;
-  font-size: 0.8rem;
-  text-align: left;
-  border: 1px solid #ccc;
-  padding: 20px;
+.subtask-container span {
+  margin-left: 10px;
 }
-@media (max-width: 520px) {
-  .in-brief-content {
-    -moz-columns: 2;
-         columns: 2;
+
+main {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.showForm {
+  opacity: 1;
+  margin-top: 0;
+  transition: 300ms linear;
+}
+
+.hideForm {
+  opacity: 0;
+  margin-top: -34rem;
+  transition: 300ms linear;
+}
+
+#tarea-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#tareas {
+  width: 80%;
+}
+
+#mis-tareas-main {
+  width: 100%;
+}
+
+#titulo-container h1 {
+  margin-left: -5.8rem;
+}
+
+#titulo-container button {
+  margin-left: 4rem;
+  z-index: 1;
+}
+
+#titulo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#tareas-main {
+  border: 1px solid #080c0873;
+  box-shadow: 1px 2px 6px 2px #00000073;
+  width: 80%;
+  padding: 20px 10px 20px 20px;
+  border-radius: 2%;
+}
+
+#tareas-container {
+  height: 80vh;
+  width: 100%;
+  overflow-y: auto;
+}
+
+  #tareas-container div {
+    cursor: pointer;
+    margin-right: 10px;
   }
-}
 
-h2 {
-  font-family: "Crimson Text", serif;
-  font-weight: 400;
-}
-
-h4 {
-  font-family: "Montserrat", sans-serif;
-}
-
-p {
-  text-indent: 2rem;
-  margin: 0;
-}
-
-.article-header {
-  padding: 0 50px;
-  margin: 0 0 30px 0;
-}
-
-.byline {
-  font-style: italic;
-}
-
-.article-body {
-  font-size: 0.9rem;
-  max-width: 500px;
-  margin: 0 auto;
-}
-.article-body h3 {
+.fecha-comprometida-container {
   text-align: center;
-  text-transform: uppercase;
-  margin-top: 2rem;
-}
-
-figure {
-  margin: 1rem 0;
-}
-figure figcaption {
   font-weight: bold;
-  letter-spacing: -0.03rem;
-}
-figure img {
-  margin: 0 0 5px 0;
+  background: #dfdfdf;
+  border-radius: 8px;
+  width: fit-content;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+.icons-container {
+  position: absolute;
+  top: -6px;
+  right: 0;
 }
+
+  .icons-container svg {
+    width: 1.7rem;
+  }
+
+.icons-container {
+  display: none;
+}
+
+  .icons-container svg:hover {
+    transform: scale(1.5);
+  }
