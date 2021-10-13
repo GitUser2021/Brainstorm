@@ -18,7 +18,8 @@
 }
 
 #titulo-container {
-  margin-top: 10px;
+  margin-top: 25px;
+  color: cadetblue;
 }
 
   #titulo-container h2 {
@@ -165,3 +166,9 @@ main {
     .icons-container svg:hover {
       transform: scale(1.5);
     }
+
+    #crear-Button {
+  background-color:cadetblue;
+  color: white!important;
+  border-color: turquoise;
+}
