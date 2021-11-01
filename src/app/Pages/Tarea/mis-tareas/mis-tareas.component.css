@@ -17,11 +17,6 @@
   width: 100%;
 }
 
-#titulo-container {
-  margin-top: 25px;
-  color: cadetblue;
-}
-
   #titulo-container h2 {
     text-align: center;
     font-size: 1rem;
@@ -39,13 +34,6 @@
     font-size: 1rem;
   }
 
-#tareas-main {
-  border: 1px solid #080c0873;
-  box-shadow: 1px 2px 6px 2px #00000073;
-  width: 80%;
-  padding: 20px 10px 20px 20px;
-  border-radius: 2%;
-}
 
 #task-frame {
   height: 70vh;
@@ -63,11 +51,6 @@
     margin-left: 10px;
   }
 
-.task-container {
-  text-align: center;
-  position: relative;
-}
-
 .subtask-container span {
   margin-left: 10px;
 }
@@ -77,17 +60,6 @@ main {
   justify-content: space-evenly;
 }
 
-.showForm {
-  opacity: 1;
-  margin-top: 0;
-  transition: 300ms linear;
-}
-
-.hideForm {
-  opacity: 0;
-  margin-top: -34rem;
-  transition: 300ms linear;
-}
 
 #tarea-main {
   display: flex;
@@ -112,29 +84,8 @@ main {
   z-index:1;
 }
 
-#titulo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#tareas-main {
-  border: 1px solid #080c0873;
-  box-shadow: 1px 2px 6px 2px #00000073;
-  width: 80%;
-  padding: 20px 10px 20px 20px;
-  border-radius: 2%;
-}
-
-#tareas-container {
-  height: 80vh;
-  width: 100%;
-  overflow-y: auto;
-}
-
   #tareas-container div {
     cursor: pointer;
-    margin-right: 10px;
   }
 
 .fecha-comprometida-container {
@@ -142,12 +93,60 @@ main {
   font-weight: bold;
   background: #dfdfdf;
   border-radius: 8px;
-  width: fit-content;
+  width: auto;
   margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+  .icons-container svg {
+    width: 1.7rem;
+  }
+
+  #crear-Button {
+    background-color:cadetblue;
+    color: white!important;
+    border-color: turquoise;
+}
+
+#titulo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+}
+
+#tareas-main {
+  /*border: 1px solid #080c0873;
+  box-shadow: 1px 2px 6px 2px #00000073;*/
+  width: 95%;
+  /*padding: 20px 10px 20px 20px;
+  border-radius: 2%;*/
+}
+
+#tareas-container {
+  height: 80vh;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  margin-top: 3rem;
+}
+
+  #tareas-container > div {
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+.showForm {
+  /*opacity:1;*/
+  margin-top: 0;
+  transition: 300ms linear;
+}
+
+.hideForm {
+  /*opacity:0;*/
+  margin-top: -34rem;
+  transition: 300ms linear;
 }
 
 .icons-container {
@@ -160,15 +159,18 @@ main {
     width: 1.7rem;
   }
 
-    .icons-container {
-      display:none;
-    }
-    .icons-container svg:hover {
-      transform: scale(1.5);
-    }
+.icons-container {
+  display: none;
+}
 
-    #crear-Button {
-  background-color:cadetblue;
-  color: white!important;
-  border-color: turquoise;
+  .icons-container svg:hover {
+    transform: scale(1.5);
+  }
+
+.task-container, .subtask-container {
+  text-align: center;
+  position: relative;
+}
+.subtask-container {
+  text-align: left;
 }

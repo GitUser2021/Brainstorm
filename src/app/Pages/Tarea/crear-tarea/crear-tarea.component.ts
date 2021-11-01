@@ -45,6 +45,7 @@ export class CrearTareaComponent implements OnInit {
 
   CrearTarea() {
     this.TareaService.SendTarea(this.infoForm.value).subscribe(tarea => {
+      debugger
       console.log('tarea: -->', tarea);
       this.tasksList.emit(tarea);
 

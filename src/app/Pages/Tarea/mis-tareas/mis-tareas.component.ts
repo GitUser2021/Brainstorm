@@ -13,9 +13,11 @@ import * as _ from 'lodash';
 })
 export class MisTareasComponent implements OnInit {
   showForm: boolean;
+  colors = ['red', 'greenyellow', 'pink', 'blueviolet', 'gray', 'aqua', 'bisque']; 
+  randomColor: string;
 
   constructor(
-    private fb: FormBuilder,private TareaService:TareaService
+    private fb: FormBuilder, private TareaService:TareaService
   ) {}
   tasks: Itarea[];
   inputTodo: string = '';
@@ -26,6 +28,8 @@ export class MisTareasComponent implements OnInit {
     this.tasks = [];
     this.GetAllTasks();
     this.showForm = false;
+    //this.randomColor = this.colors[Math.floor(Math.random() * 7)];
+    this.randomColor = this.colors[2];
   }
 
   receiveMessage($event){
@@ -62,7 +66,12 @@ export class MisTareasComponent implements OnInit {
 
         setTimeout(() => {
           MisTareasComponent.SetEvents();
-        }, 0)
+          let tareas = document.getElementsByClassName('task-card').length;
+          for (let i = 0; i < tareas; i++) {
+            //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
+            (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
+          };
+      }, 0)
       });
   };
   
@@ -104,6 +113,20 @@ export class MisTareasComponent implements OnInit {
         document.getElementById('icons-' + id).style.display = 'none';
       })
     }
+
+    for (let i = 0; i < document.getElementsByClassName('subtask-container').length; i++) {
+      document.getElementsByClassName('subtask-container')[i].addEventListener('mouseenter', e => {
+        let id = (<HTMLInputElement>e.currentTarget).dataset.id;
+        document.getElementById('sub-icons-' + id).style.display = 'block'
+      })
+    }
+
+    for (let i = 0; i < document.getElementsByClassName('subtask-container').length; i++) {
+      document.getElementsByClassName('subtask-container')[i].addEventListener('mouseleave', e => {
+        let id = (<HTMLInputElement>e.currentTarget).dataset.id;
+        document.getElementById('sub-icons-' + id).style.display = 'none';
+      })
+    }
   }
 
 
@@ -130,8 +153,8 @@ export class MisTareasComponent implements OnInit {
   private EditTaskModal(tareaId: any) {
     return Swal.fire({
      title: 'Edit your task.',
-     html: `<input id="swal-input1" class="swal2-input" value="${this.oldName?.toString()}">
-            <input id="swal-input2" class="swal2-input" value="${this.oldDate?.toString()}">`,
+     html: `<div style="display:flex;flex-direction:column;"><label>Name:</label><input id="swal-input1" style="margin:5px;" class="swal2-input" value="${this.oldName?.toString()}">
+            <label>Due date:</label><input type="date" id="swal-input2" style="margin:5px;" class="swal2-input" value="${this.oldDate?.toString()}">`,
       showCancelButton: true,
       confirmButtonText: 'Edit',
       showLoaderOnConfirm: true,
@@ -185,5 +208,4 @@ export class MisTareasComponent implements OnInit {
       console.log('tarea editada: -->', tarea);
     });
   }
-
 }

@@ -6,6 +6,9 @@ import { TareaService } from 'src/Services/tarea.service';
 import Swal from 'sweetalert2';
 import * as _ from 'lodash';
 
+import { DOCUMENT } from '@angular/common';
+import { Inject } from '@angular/core';
+
 @Component({
   selector: 'app-mis-grupo',
   templateUrl: './mis-grupos.component.html',
@@ -14,11 +17,16 @@ import * as _ from 'lodash';
 })
 export class MisGruposComponent implements OnInit {
   showForm: boolean;
-    oldName: string = '';
+  oldName: string = '';
+  oldDescription: string = '';
+  static groupId: any;
+  colors = ['red', 'greenyellow', 'pink', 'blueviolet', 'gray', 'aqua', 'bisque']; 
+  randomColor: string;
 
   constructor(
     private GrupoService: GrupoService,
-    private fb: FormBuilder,private TareaService:TareaService
+    private fb: FormBuilder, private TareaService: TareaService,
+    @Inject(DOCUMENT) private doc: Document
   ) {}
   groups: Igrupo[];
   inputTodo: string = '';
@@ -27,6 +35,13 @@ export class MisGruposComponent implements OnInit {
     this.groups = []; 
     this.GetAllGroups();
     this.showForm = false;
+    //this.randomColor = this.colors[Math.floor(Math.random() * 7)];
+    this.randomColor = this.colors[2];
+  }
+
+  setGroupId(event, id) {
+    event.stopPropagation();
+    MisGruposComponent.groupId = id;
   }
 
   receiveMessage($event){
@@ -57,19 +72,27 @@ export class MisGruposComponent implements OnInit {
     return this.infoForm.get('descripcion');
   };
 
-  GetAllGroups(){
+  GetAllGroups() {
     this.GrupoService
     .GetAllGroups()
     .subscribe(allGroups => {
       console.log('allGroups: -->', allGroups);
       this.groups = allGroups;
-        setTimeout(() => {
-          MisGruposComponent.SetEvents();
-        }, 0)
+
+      setTimeout(() => {
+        MisGruposComponent.SetEvents();
+        //var colors = ['red','greenyellow','blueviolet','pink','gray','aqua','bisque']
+        let grupos = document.getElementsByClassName('group-card').length;
+        for (let i = 0; i < grupos; i++){
+          //(<HTMLHtmlElement>document.getElementsByClassName('group-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
+          (<HTMLHtmlElement>document.getElementsByClassName('group-card')[i]).style.backgroundColor = this.colors[i]
+        };
+      }, 0)
     });
   };
 
-  DeleteGroup(grupoId) {
+  DeleteGroup(event, grupoId) {
+    event.stopPropagation();
     this.DeleteGroupModal(grupoId)
   }
 
@@ -109,12 +132,14 @@ export class MisGruposComponent implements OnInit {
     }
   }
 
-  EditGroup(grupoId, oldName) {
+  EditGroup(event, grupoId, oldName, oldDescription) {
+    event.stopPropagation();
     //this.GrupoService.GetGroupById(grupoId).subscribe(groupById => {
     //  this.oldName = groupById.descripcion;
     //  this.ResultGroupEdit(grupoId);
     //});
     this.oldName = oldName;
+    this.oldDescription = oldDescription;
     this.ResultGroupEdit(grupoId);
   }
 
@@ -128,19 +153,19 @@ export class MisGruposComponent implements OnInit {
     });
   }
 
-  private EditGroupModal(grupoId: any) {
+ private EditGroupModal(grupoId: any) {
     return Swal.fire({
-      title: 'Edit your group.',
-      input: 'text',
-      inputValue: this.oldName?.toString(),
-      inputAttributes: {
-        autocapitalize: 'off'
-      },
+     title: 'Edit your group.',
+     html: `<div style="display:flex;flex-direction:column;"><label>Name:</label><input id="swal-input1" style="margin:5px;" class="swal2-input" value="${this.oldName?.toString()}">
+            <label>Description:</label><input id="swal-input2" style="margin:5px;" class="swal2-input" value="${this.oldDescription?.toString()}"></div>`,
       showCancelButton: true,
       confirmButtonText: 'Edit',
       showLoaderOnConfirm: true,
-      preConfirm: group => {
-        this.PreConfirmTask(grupoId, group);
+      preConfirm: task => {
+        this.PreConfirmTask(grupoId, {
+          nombre: (<HTMLInputElement>document.getElementById('swal-input1')).value,
+          descripcion: (<HTMLInputElement>document.getElementById('swal-input2')).value,
+        });
       },
       allowOutsideClick: () => !Swal.isLoading()
     });

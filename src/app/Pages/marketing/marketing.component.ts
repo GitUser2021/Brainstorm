@@ -13,7 +13,9 @@ import { MisTareasComponent } from '../Tarea/mis-tareas/mis-tareas.component';
   styleUrls: ['./marketing.component.css']
 })
 export class MarketingComponent implements OnInit {
-   showForm: boolean;
+  showForm: boolean;
+  colors = ['red', 'greenyellow', 'pink', 'blueviolet', 'gray', 'aqua', 'bisque']; 
+  randomColor: string;
 
   constructor(
     private fb: FormBuilder,private TareaService:TareaService
@@ -24,12 +26,14 @@ export class MarketingComponent implements OnInit {
   oldName: string = '';
   oldDate: string = '';
   hoy:any = new Date();
-  fechaVencimiento: any = new Date(`${this.hoy.getMonth()+1}-${this.hoy.getDate()-2}-${this.hoy.getFullYear()}` )
+  fechaVencimiento: any = new Date(`${this.hoy.getMonth()+1}-${this.hoy.getDate()-7}-${this.hoy.getFullYear()}` )
 
   ngOnInit(): void {
     this.tasks = [];
     this.GetAllTasks();
     this.showForm = false;
+    //this.randomColor = this.colors[Math.floor(Math.random() * 7)];
+    this.randomColor = this.colors[2];
   }
 
   ConvertDate(string) {
@@ -70,9 +74,14 @@ export class MarketingComponent implements OnInit {
         console.log('allTasks: -->', allTasks);
         this.tasks = allTasks;
 
-        setTimeout(() => {
+         setTimeout(() => {
           MisTareasComponent.SetEvents();
-        }, 0)
+          let tareas = document.getElementsByClassName('task-card').length;
+          for (let i = 0; i < tareas; i++) {
+            //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
+            (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
+          };
+      }, 0)
       });
   };
   
@@ -152,9 +161,9 @@ export class MarketingComponent implements OnInit {
 
    private EditTaskModal(tareaId: any) {
     return Swal.fire({
-     title: 'Edit your task.',
-     html: `<input id="swal-input1" class="swal2-input" value="${this.oldName?.toString()}">
-            <input id="swal-input2" class="swal2-input" value="${this.oldDate?.toString()}">`,
+      title: 'Edit your task.',
+     html: `<div style="display:flex;flex-direction:column;"><label>Name:</label><input id="swal-input1" style="margin:5px;" class="swal2-input" value="${this.oldName?.toString()}">
+            <label>Due date:</label><input type="date" id="swal-input2" style="margin:5px;" class="swal2-input" value="${this.oldDate?.toString()}">`,
       showCancelButton: true,
       confirmButtonText: 'Edit',
       showLoaderOnConfirm: true,

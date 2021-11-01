@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap");
 
 * {
-  transition: all 0.5s ease;
+  transition: display 0.5s ease;
 }
 
 #crearGrupo-main {
@@ -13,6 +13,7 @@
   height: 87vh;
   width: 30rem;
   padding: 2rem;
+  z-index: 2;
   /**/
   background: lightgray;
   position: absolute;

@@ -20,6 +20,7 @@
   position: absolute;
   top: 4rem;
   left: 28rem;
+  z-index:2;
 }
 
 form {
@@ -448,7 +449,7 @@ body {
     width: 85%;
   }
 
-input[type="text"] {
+input[type="text"], input[type="date"] {
   box-sizing: border-box;
   width: 30%;
   height: calc(3em + 2px);

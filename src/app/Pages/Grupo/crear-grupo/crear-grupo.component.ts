@@ -35,14 +35,14 @@ export class CrearGrupoComponent implements OnInit {
 
   infoForm = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
-    description: ['', [Validators.required, Validators.minLength(3)]]
+    descripcion: ['', [Validators.required, Validators.minLength(3)]]
   });
 
   get nombre() {
     return this.infoForm.get('nombre');
   }
-  get description() {
-    return this.infoForm.get('description');
+  get descripcion() {
+    return this.infoForm.get('descripcion');
   };
 
   CrearGrupo() {
