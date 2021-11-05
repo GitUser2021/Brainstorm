@@ -26,6 +26,7 @@ HEADERS = {
 }
 
   SendGrupo(obj: any): Observable<Igrupo> {
+    debugger
     return this._http.post<Igrupo>('/api/grupos', obj, this.HEADERS)
   }
 
@@ -34,7 +35,7 @@ HEADERS = {
   };
 
   
-  SendEmailIfExist(email: string) {
+  GetUserIfExist(email: string) {
     return this._http.get<Igrupo>('/api/usuarios/' + email);
   };
 

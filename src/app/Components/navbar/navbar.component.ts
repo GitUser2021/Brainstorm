@@ -20,15 +20,16 @@ export class NavbarComponent implements OnInit {
       .subscribe((profile) => {
         console.log(profile);
         console.log('email: ', profile.email);
-        this.SendEmailIfExist(profile.email);
+        this.GetUserIfExist(profile.email);
         this.profileInfo = profile;
         this.profileJson = JSON.stringify(profile, null, 2)
       });
   }
 
-  SendEmailIfExist(email: any) {
-    this.GrupoService.SendEmailIfExist(email).subscribe( email => {
-      console.log('email if exists: -->', email);
+  GetUserIfExist(user: any) {
+    this.GrupoService.GetUserIfExist(user).subscribe( user => {
+      console.log('user if exists: -->', user);
+      localStorage.setItem('user', JSON.stringify(user));
     });
   };
 }
