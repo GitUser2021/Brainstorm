@@ -27,7 +27,8 @@ HEADERS = {
 
   SendGrupo(obj: any): Observable<Igrupo> {
     debugger
-    return this._http.post<Igrupo>('/api/grupos', obj, this.HEADERS)
+    
+    return this._http.post<Igrupo>('/api/grupos/'+ obj.userEmail, obj, this.HEADERS)
   }
 
   GetAllGroups() {
