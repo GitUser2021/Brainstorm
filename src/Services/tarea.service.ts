@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IsubTarea } from '../app/Models/subTarea';
 import { Itarea } from '../app/Models/tarea';
 import { TokenService } from './token.service';
 
@@ -29,6 +30,16 @@ export class TareaService {
     return this._http.post<Itarea>('/api/tareas', obj, this.HEADERS)
   };
 
+    SendSubTarea(obj: any): Observable<Itarea> {
+    console.log('jwt:', this.JWT)
+    return this._http.post<Itarea>('/api/subtareas', obj, this.HEADERS)
+  };
+
+   GetAllSubTasks() {
+    localStorage.setItem('JWT', this.JWT)
+    return this._http.get<IsubTarea[]>('/api/subtareas');
+  };
+
   DeleteTarea(tareaId: number): Observable<Itarea> {
     return this._http.delete<Itarea>('/api/tareas/' + tareaId, this.HEADERS);
   };
@@ -36,6 +47,11 @@ export class TareaService {
   GetAllTasks() {
     localStorage.setItem('JWT', this.JWT)
     return this._http.get<Itarea[]>('/api/tareas');
+  };
+
+   GetAllTasksGroup() {
+    localStorage.setItem('JWT', this.JWT)
+    return this._http.get<Itarea[]>('/api/tareasGrupo');
   };
 
   GetTaskById(tareaId: number) {

@@ -4,6 +4,7 @@ import { TareaService } from 'src/Services/tarea.service';
 import { Itarea } from 'src/app/Models/tarea';
 import Swal from 'sweetalert2';
 import * as _ from 'lodash';
+import { IsubTarea } from '../../../Models/subTarea';
 
 @Component({
   selector: 'app-mis-tareas',
@@ -20,13 +21,16 @@ export class MisTareasComponent implements OnInit {
     private fb: FormBuilder, private TareaService:TareaService
   ) {}
   tasks: Itarea[];
+  subTasks: IsubTarea[];
   inputTodo: string = '';
   oldName: string = '';
   oldDate: string = '';
 
   ngOnInit(): void {
     this.tasks = [];
+    this.subTasks = [];
     this.GetAllTasks();
+    this.GetAllSubTasks();
     this.showForm = false;
     //this.randomColor = this.colors[Math.floor(Math.random() * 7)];
     this.randomColor = this.colors[2];
@@ -74,7 +78,25 @@ export class MisTareasComponent implements OnInit {
       }, 0)
       });
   };
-  
+
+  GetAllSubTasks() {
+    this.TareaService
+      .GetAllSubTasks()
+      .subscribe(allSubTasks => {
+        console.log('allSubTasks: -->', allSubTasks);
+        this.subTasks = allSubTasks;
+
+      //  setTimeout(() => {
+      //    MisTareasComponent.SetEvents();
+      //    let tareas = document.getElementsByClassName('task-card').length;
+      //    for (let i = 0; i < tareas; i++) {
+      //      //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
+      //      (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
+      //    };
+      //}, 0)
+      });
+  };
+
   DeleteTask(tareaId) {
     this.DeleteTaskModal(tareaId)
   }

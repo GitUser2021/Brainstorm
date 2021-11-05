@@ -6,6 +6,7 @@ import { MisGruposComponent } from '../../Grupo/mis-grupos/mis-grupos.component'
 import { MisTareasComponent } from '../mis-tareas/mis-tareas.component';
 import Swal from 'sweetalert2';
 import * as _ from 'lodash';
+import { IsubTarea } from '../../../Models/subTarea';
 
 @Component({
   selector: 'app-ver-tareas',
@@ -20,12 +21,16 @@ export class VerTareasComponent implements OnInit {
   oldDate: string = '';
   groupId: any;
   tasks: Itarea[];
+  subTasks: IsubTarea[];
 
   constructor(private router: Router, private TareaService: TareaService) { }
 
   ngOnInit(): void {
     this.tasks = [];
-    this.GetTaskById();
+    this.subTasks = [];
+    //this.GetTaskById();
+    this.GetAllTaskGroup();
+    this.GetAllSubTasks();
     this.groupName = this.router.url.replace('/Tareas/', '');
     this.groupId = MisGruposComponent.groupId;
   }
@@ -44,6 +49,43 @@ export class VerTareasComponent implements OnInit {
     //    }, 0)
     //  });
   };
+
+  GetAllTaskGroup() {
+     this.TareaService
+      .GetAllTasksGroup()
+      .subscribe(allTasksGroup => {
+        console.log('allTasksGroup: -->', allTasksGroup);
+        this.tasks = allTasksGroup;
+
+      //  setTimeout(() => {
+      //    MisTareasComponent.SetEvents();
+      //    let tareas = document.getElementsByClassName('task-card').length;
+      //    for (let i = 0; i < tareas; i++) {
+      //      //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
+      //      (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
+      //    };
+      //}, 0)
+      });
+  }
+
+    GetAllSubTasks() {
+    this.TareaService
+      .GetAllSubTasks()
+      .subscribe(allSubTasks => {
+        console.log('allSubTasks: -->', allSubTasks);
+        this.subTasks = allSubTasks;
+
+      //  setTimeout(() => {
+      //    MisTareasComponent.SetEvents();
+      //    let tareas = document.getElementsByClassName('task-card').length;
+      //    for (let i = 0; i < tareas; i++) {
+      //      //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
+      //      (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
+      //    };
+      //}, 0)
+      });
+  };
+  
 
 
   DeleteTask(tareaId) {

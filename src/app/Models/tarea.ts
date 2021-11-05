@@ -1,3 +1,5 @@
+import { IsubTarea } from "./subTarea";
+
 export interface Itarea {
   tareaId: number;
   createdAt: any;
@@ -9,4 +11,6 @@ export interface Itarea {
   responsable: any;
   statusId: any;
   updatedAt: any;
+  listSubTareas: IsubTarea[];
+
   }
