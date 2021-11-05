@@ -34,8 +34,8 @@ HEADERS = {
   };
 
   
-  SendEmailIfExist(obj: any) {
-    return this._http.post<Igrupo>('/api/usuarios/', obj, this.HEADERS);
+  SendEmailIfExist(email: string) {
+    return this._http.get<Igrupo>('/api/usuarios/' + email);
   };
 
   GetGroupById(groupId: number) {

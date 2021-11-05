@@ -34,6 +34,7 @@ export class MisGruposComponent implements OnInit {
   ngOnInit(): void {
     this.groups = []; 
     this.GetAllGroups();
+    this.GetGroupById(1);
     this.showForm = false;
     //this.randomColor = this.colors[Math.floor(Math.random() * 7)];
     this.randomColor = this.colors[2];
@@ -90,6 +91,15 @@ export class MisGruposComponent implements OnInit {
       }, 0)
     });
   };
+
+  GetGroupById(id: number) {
+    this.GrupoService
+      .GetGroupById(id)
+    .subscribe(id => {
+      console.log('id: -->', id);
+    });
+  };
+
 
   DeleteGroup(event, grupoId) {
     event.stopPropagation();
