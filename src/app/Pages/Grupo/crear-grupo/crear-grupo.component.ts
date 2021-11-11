@@ -36,8 +36,7 @@ export class CrearGrupoComponent implements OnInit {
   infoForm = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
     descripcion: ['', [Validators.required, Validators.minLength(3)]],
-    user: ['', [Validators.required, Validators.minLength(3)]],
-    userEmail: ['', [Validators.required, Validators.minLength(3)]]
+    usuarioCreador: ['', [Validators.required]]
   });
 
   get nombre() {
@@ -46,16 +45,13 @@ export class CrearGrupoComponent implements OnInit {
   get descripcion() {
     return this.infoForm.get('descripcion');
   };
-  get user() {
-    return this.infoForm.get('user');
-  };
-  get userEmail() {
-    return this.infoForm.get('user');
+  get usuarioCreador() {
+    return this.infoForm.get('usuarioCreador');
   };
 
   CrearGrupo() {
-    this.infoForm.value.user = JSON.parse( localStorage.getItem('user')).usuarioId;
-    this.infoForm.value.userEmail = JSON.parse( localStorage.getItem('user')).email;
+    this.infoForm.value.usuarioCreador = JSON.parse(localStorage.getItem('user'));
+    debugger
     this.GrupoService.SendGrupo(this.infoForm.value).subscribe(grupo => {
       console.log('grupo: -->', grupo);
       this.groupList.emit(grupo);

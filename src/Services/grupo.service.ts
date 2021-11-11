@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Igrupo } from '../app/Models/grupo';
+import { Iuser } from '../app/Models/user';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -21,14 +22,14 @@ HEADERS = {
     'Access-Control-Allow-Methods': 'GET, POST',
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Credentials': 'false',
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + this.JWT
   })
 }
 
   SendGrupo(obj: any): Observable<Igrupo> {
-    debugger
-    
-    return this._http.post<Igrupo>('/api/grupos/'+ obj.userEmail, obj, this.HEADERS)
+    return this._http.post<Igrupo>('/api/grupos' , obj, this.HEADERS)
   }
 
   GetAllGroups() {
@@ -36,8 +37,8 @@ HEADERS = {
   };
 
   
-  GetUserIfExist(email: string) {
-    return this._http.get<Igrupo>('/api/usuarios/' + email);
+  GetUserIfExist(obj: any) {
+    return this._http.post<Iuser>('/api/usuarios/' , obj, this.HEADERS);
   };
 
   GetGroupById(groupId: number) {
@@ -48,8 +49,8 @@ HEADERS = {
     return this._http.delete<Igrupo>('/api/grupos/' + groupId, this.HEADERS);
   };
   
-  EditGroup(groupId: number, obj: any): Observable<Igrupo> {
-    return this._http.put<Igrupo>('/api/grupos/' + groupId, obj, this.HEADERS);
+  EditGroup(obj: any): Observable<Igrupo> {
+    return this._http.put<Igrupo>('/api/grupos', obj, this.HEADERS);
   };
 
   EditGroupStatus(groupId: number, obj: any): Observable<Igrupo> {

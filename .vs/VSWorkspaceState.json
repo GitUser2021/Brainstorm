@@ -4,10 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\Pages",
-    "\\src\\app\\Pages\\marketing",
+    "\\src\\app\\Pages\\Grupo",
+    "\\src\\app\\Pages\\Grupo\\crear-grupo",
+    "\\src\\app\\Pages\\Grupo\\mis-grupos",
     "\\src\\app\\Pages\\Tarea",
-    "\\src\\app\\Pages\\Tarea\\mis-tareas"
+    "\\src\\app\\Pages\\Tarea\\crear-tarea",
+    "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\app\\Pages\\Tarea\\mis-tareas\\mis-tareas.component.html",
+  "SelectedNode": "\\src\\app\\Pages\\marketing\\marketing.component.html",
   "PreviewInSolutionExplorer": false
 }

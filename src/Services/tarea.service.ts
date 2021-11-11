@@ -18,14 +18,18 @@ export class TareaService {
    HEADERS = {
   headers: new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT',
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Credentials': 'false',
+    'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + this.JWT
   })
 }
 
   SendTarea(obj: any): Observable<Itarea> {
+    obj.grupo_Id = JSON.stringify(JSON.parse(localStorage.getItem('user')).listaGruposCreados[0].grupoId) ;
+    debugger
+
     console.log('jwt:', this.JWT)
     return this._http.post<Itarea>('/api/tareas', obj, this.HEADERS)
   };
@@ -59,7 +63,7 @@ export class TareaService {
   };
 
   EditTask(tareaId: number, obj: any): Observable<Itarea> {
-    return this._http.put<Itarea>('/api/tareas/' + tareaId, obj, this.HEADERS);
+    return this._http.put<Itarea>('/api/tareas' , obj, this.HEADERS);
   };
 
   EditTaskStatus(tareaId: number, obj: any): Observable<Itarea> {

@@ -75,6 +75,8 @@ export class MisTareasComponent implements OnInit {
             //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
             (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
           };
+
+          this.setCheckboxEvents();
       }, 0)
       });
   };
@@ -153,11 +155,9 @@ export class MisTareasComponent implements OnInit {
 
 
   EditTask(tareaId, oldName, oldFechaComprometida) {
-    this.TareaService.GetTaskById(tareaId).subscribe(taskById => {
-      this.oldName = oldName;
-      this.oldDate = oldFechaComprometida?.toString().split('T')[0];
-      this.ResultTaskEdit(tareaId);
-    });
+    this.oldName = oldName;
+    this.oldDate = oldFechaComprometida?.toString().split('T')[0];
+    this.ResultTaskEdit(tareaId);
   }
 
   private ResultTaskEdit(tareaId: any) {
@@ -166,7 +166,6 @@ export class MisTareasComponent implements OnInit {
         Swal.fire({
           title: `Task edited`
         });
-
         console.log('result: ', result)
       }
     });
@@ -176,7 +175,8 @@ export class MisTareasComponent implements OnInit {
     return Swal.fire({
      title: 'Edit your task.',
      html: `<div style="display:flex;flex-direction:column;"><label>Name:</label><input id="swal-input1" style="margin:5px;" class="swal2-input" value="${this.oldName?.toString()}">
-            <label>Due date:</label><input type="date" id="swal-input2" style="margin:5px;" class="swal2-input" value="${this.oldDate?.toString()}">`,
+            <label>Due date:</label><input type="date" id="swal-input2" style="margin:5px;" class="swal2-input" value="${this.oldDate?.toString()}">
+            <input type="hidden" id="swal-input3" value="${tareaId}">`,
       showCancelButton: true,
       confirmButtonText: 'Edit',
       showLoaderOnConfirm: true,
@@ -184,6 +184,7 @@ export class MisTareasComponent implements OnInit {
         this.PreConfirmTask(tareaId, {
           descripcion: (<HTMLInputElement>document.getElementById('swal-input1')).value,
           fechaComprometida: (<HTMLInputElement>document.getElementById('swal-input2')).value,
+          tareaId: (<HTMLInputElement>document.getElementById('swal-input3')).value
         });
       },
       allowOutsideClick: () => !Swal.isLoading()
@@ -229,5 +230,14 @@ export class MisTareasComponent implements OnInit {
     }).subscribe(tarea => {
       console.log('tarea editada: -->', tarea);
     });
+  }
+
+  private setCheckboxEvents() {
+    console.log('eventoo');
+    for (let i = 0; i < document.getElementsByClassName('checkbox-tarea').length; i++) {
+      document.getElementsByClassName('checkbox-tarea')[i].addEventListener('click', e => {
+        
+      })
+    }
   }
 }

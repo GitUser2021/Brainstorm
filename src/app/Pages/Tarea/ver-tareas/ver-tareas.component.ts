@@ -22,19 +22,32 @@ export class VerTareasComponent implements OnInit {
   groupId: any;
   tasks: Itarea[];
   subTasks: IsubTarea[];
+  user: any;
 
   constructor(private router: Router, private TareaService: TareaService) { }
 
   ngOnInit(): void {
-    this.tasks = [];
+    this.user = JSON.parse(localStorage.getItem('user'));
     this.subTasks = [];
-    //this.GetTaskById();
-    this.GetAllTaskGroup();
-    this.GetAllSubTasks();
     this.groupName = this.router.url.replace('/Tareas/', '');
     this.groupId = MisGruposComponent.groupId;
+    localStorage.setItem('grupoId', this.groupId);
+    this.tasks = this.getTareasByGroupId(this.groupId);
   }
 
+
+
+  public getTareasByGroupId(id: number) {
+    let grupos = this.user.listaGruposCreados;
+
+    for (var i = 0; i < grupos.length; i++) {
+      if (grupos[i].grupoId == id) {
+        this.tasks = grupos[i].listaTareas;
+        break;
+      }
+    }
+    return this.tasks;
+  }
 
   //**********************  FALTA LA RELACION ENTRE EL GRUPO Y LAS TAREAS POR GRUPOID...
   GetTaskById() {
@@ -51,41 +64,41 @@ export class VerTareasComponent implements OnInit {
   };
 
   GetAllTaskGroup() {
-     this.TareaService
+    this.TareaService
       .GetAllTasksGroup()
       .subscribe(allTasksGroup => {
         console.log('allTasksGroup: -->', allTasksGroup);
         this.tasks = allTasksGroup;
 
-      //  setTimeout(() => {
-      //    MisTareasComponent.SetEvents();
-      //    let tareas = document.getElementsByClassName('task-card').length;
-      //    for (let i = 0; i < tareas; i++) {
-      //      //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
-      //      (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
-      //    };
-      //}, 0)
+        //  setTimeout(() => {
+        //    MisTareasComponent.SetEvents();
+        //    let tareas = document.getElementsByClassName('task-card').length;
+        //    for (let i = 0; i < tareas; i++) {
+        //      //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
+        //      (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
+        //    };
+        //}, 0)
       });
   }
 
-    GetAllSubTasks() {
+  GetAllSubTasks() {
     this.TareaService
       .GetAllSubTasks()
       .subscribe(allSubTasks => {
         console.log('allSubTasks: -->', allSubTasks);
         this.subTasks = allSubTasks;
 
-      //  setTimeout(() => {
-      //    MisTareasComponent.SetEvents();
-      //    let tareas = document.getElementsByClassName('task-card').length;
-      //    for (let i = 0; i < tareas; i++) {
-      //      //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
-      //      (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
-      //    };
-      //}, 0)
+        //  setTimeout(() => {
+        //    MisTareasComponent.SetEvents();
+        //    let tareas = document.getElementsByClassName('task-card').length;
+        //    for (let i = 0; i < tareas; i++) {
+        //      //(<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
+        //      (<HTMLHtmlElement>document.getElementsByClassName('task-card')[i]).style.backgroundColor = this.colors[i]
+        //    };
+        //}, 0)
       });
   };
-  
+
 
 
   DeleteTask(tareaId) {
@@ -130,11 +143,9 @@ export class VerTareasComponent implements OnInit {
 
 
   EditTask(tareaId, oldName, oldFechaComprometida) {
-    this.TareaService.GetTaskById(tareaId).subscribe(taskById => {
-      this.oldName = oldName;
-      this.oldDate = oldFechaComprometida?.toString().split('T')[0];
-      this.ResultTaskEdit(tareaId);
-    });
+    this.oldName = oldName;
+    this.oldDate = oldFechaComprometida?.toString().split('T')[0];
+    this.ResultTaskEdit(tareaId);
   }
 
   private ResultTaskEdit(tareaId: any) {
@@ -153,7 +164,8 @@ export class VerTareasComponent implements OnInit {
     return Swal.fire({
       title: 'Edit your task.',
       html: `<div style="display:flex;flex-direction:column;"><label>Name:</label><input id="swal-input1" style="margin:5px;" class="swal2-input" value="${this.oldName?.toString()}">
-            <label>Due date:</label><input id="swal-input2" style="margin:5px;" class="swal2-input" value="${this.oldDate?.toString()}">`,
+            <label>Due date:</label><input id="swal-input2" style="margin:5px;" class="swal2-input" value="${this.oldDate?.toString()}">
+            <input type="hidden" id="swal-input3" value="${tareaId}">`,
       showCancelButton: true,
       confirmButtonText: 'Edit',
       showLoaderOnConfirm: true,
@@ -161,6 +173,7 @@ export class VerTareasComponent implements OnInit {
         this.PreConfirmTask(tareaId, {
           descripcion: (<HTMLInputElement>document.getElementById('swal-input1')).value,
           fechaComprometida: (<HTMLInputElement>document.getElementById('swal-input2')).value,
+          tareaId: (<HTMLInputElement>document.getElementById('swal-input3')).value
         });
       },
       allowOutsideClick: () => !Swal.isLoading()
@@ -194,7 +207,7 @@ export class VerTareasComponent implements OnInit {
     this.showForm = $event;
   }
 
-  
+
   receiveTaskList($event) {
     this.tasks.push($event);
   }

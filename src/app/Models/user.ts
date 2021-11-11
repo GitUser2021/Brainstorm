@@ -1,16 +1,16 @@
 export interface Iuser {
-  createdAt: any,
-  documento: any,
-  email: any,
-  listGrupos: any,
-  listSubTareasCreadas: any,
-  listSubTareasResponsable: any,
-  listTareasCreadas:any,
-  listTareasResponsable: any,
-  nacionalidad:any,
-  nombreApellido:any,
-  sexo: any,
-  usuaarioActivo: any,
-  usuarioFullAccess: any,
-  usuarioId:any
+  usuarioId?:any
+  email?: any,
+  nombreApellido?: any,
+  listTareasCreadas?:any
+  //createdAt: any,
+  //documento: any,
+  //listGrupos: any,
+  //listSubTareasCreadas: any,
+  //listSubTareasResponsable: any,
+  //listTareasResponsable: any,
+  //nacionalidad:any,
+  //sexo: any,
+  //usuarioActivo: any,
+  //usuarioFullAccess: any,
 }

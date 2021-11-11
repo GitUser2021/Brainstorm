@@ -20,14 +20,10 @@
                      formControlName="descripcion"
                      [(ngModel)]="inputDescription" />
 
-              <input name="groupUser"
+              <input name="usuarioCreador"
                      type="hidden"
-                     formControlName="user"/>
-
-              <input name="groupUserEmail"
-                     type="hidden"
-                     formControlName="userEmail"/>
-
+                     formControlName="usuarioCreador"/>
+            
             </div>
             <button (click)="HideForm()" type="submit" class="btn btn-primary">Save group</button>
             <span (click)="HideForm();this.inputName = '';this.inputDescription = '';" style="margin-top:-2rem;" class="btn btn-danger">Cancel</span>

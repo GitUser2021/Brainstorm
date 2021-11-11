@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 
 import { DOCUMENT } from '@angular/common';
 import { Inject } from '@angular/core';
+import { Iuser } from '../../../Models/user';
 
 @Component({
   selector: 'app-mis-grupo',
@@ -30,14 +31,15 @@ export class MisGruposComponent implements OnInit {
   ) {}
   groups: Igrupo[];
   inputTodo: string = '';
+  user: any;
 
   ngOnInit(): void {
-    this.groups = []; 
-    this.GetAllGroups();
-    this.GetGroupById(1);
+    this.groups = [];
     this.showForm = false;
     //this.randomColor = this.colors[Math.floor(Math.random() * 7)];
     this.randomColor = this.colors[2];
+    this.user =  JSON.parse(localStorage.getItem('user'));
+    this.groups = this.user.listaGruposCreados;
   }
 
   setGroupId(event, id) {
@@ -175,6 +177,7 @@ export class MisGruposComponent implements OnInit {
         this.PreConfirmTask(grupoId, {
           nombre: (<HTMLInputElement>document.getElementById('swal-input1')).value,
           descripcion: (<HTMLInputElement>document.getElementById('swal-input2')).value,
+          grupoId: grupoId,
         });
       },
       allowOutsideClick: () => !Swal.isLoading()
@@ -182,7 +185,8 @@ export class MisGruposComponent implements OnInit {
   }
 
   private PreConfirmTask(grupoId: any, group: any) {
-    this.GrupoService.EditGroup(grupoId, { nombre: group }).subscribe(
+    debugger
+    this.GrupoService.EditGroup( group ).subscribe(
       group => {
         this.groups = this.groups.filter(group => group.grupoId != grupoId);
         this.groups.push(group);
