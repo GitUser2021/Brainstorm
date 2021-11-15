@@ -22,13 +22,16 @@ export class CrearGrupoComponent implements OnInit {
 
   inputName: string = '';
   inputDescription: string = '';
-
+  CANCEL: string = 'cancel';
   ngOnInit(): void { }
 
   @Output() showForm: EventEmitter<boolean> = new EventEmitter();
   @Output() groupList: EventEmitter<any> = new EventEmitter();
 
-  HideForm() {
+  HideForm(mode: string) {
+    if (mode != this.CANCEL && !this.IsCreateGroupFormValid()) {
+      return;
+    }
     this.showForm.emit(false);
     document.getElementById('popup-tarea-backshadow').style.display = 'none';
   };
@@ -36,7 +39,6 @@ export class CrearGrupoComponent implements OnInit {
   infoForm = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
     descripcion: ['', [Validators.required, Validators.minLength(3)]],
-    usuarioCreador: ['', [Validators.required]]
   });
 
   get nombre() {
@@ -45,13 +47,9 @@ export class CrearGrupoComponent implements OnInit {
   get descripcion() {
     return this.infoForm.get('descripcion');
   };
-  get usuarioCreador() {
-    return this.infoForm.get('usuarioCreador');
-  };
 
   CrearGrupo() {
     this.infoForm.value.usuarioCreador = JSON.parse(localStorage.getItem('user'));
-    debugger
     this.GrupoService.SendGrupo(this.infoForm.value).subscribe(grupo => {
       console.log('grupo: -->', grupo);
       this.groupList.emit(grupo);
@@ -62,4 +60,27 @@ export class CrearGrupoComponent implements OnInit {
       }, 0)
     });
   };
+
+  IsCreateGroupFormValid(): Boolean {
+    if (this.infoForm.value.nombre == '' && this.infoForm.value.descripcion != '') {
+      document.getElementById('input-descripcion').classList.remove('descripcion-error');
+      document.getElementById('input-nombre').classList.add('descripcion-error');
+      return false;
+    }
+    if (this.infoForm.value.descripcion == '' && this.infoForm.value.nombre != '') {
+      document.getElementById('input-nombre').classList.remove('descripcion-error');
+      document.getElementById('input-descripcion').classList.add('descripcion-error');
+      return false;
+    }
+
+    if (this.infoForm.value.descripcion == '' && this.infoForm.value.nombre == '') {
+      document.getElementById('input-nombre').classList.add('descripcion-error');
+      document.getElementById('input-descripcion').classList.add('descripcion-error');
+      return false;
+    }
+
+    document.getElementById('input-descripcion').classList.remove('descripcion-error');
+    document.getElementById('input-nombre').classList.remove('descripcion-error');
+    return true;
+  }
 }

@@ -21,6 +21,7 @@ export class MisGruposComponent implements OnInit {
   oldName: string = '';
   oldDescription: string = '';
   static groupId: any;
+  static group: Igrupo;
   colors = ['red', 'greenyellow', 'pink', 'blueviolet', 'gray', 'aqua', 'bisque']; 
   randomColor: string;
 
@@ -28,7 +29,8 @@ export class MisGruposComponent implements OnInit {
     private GrupoService: GrupoService,
     private fb: FormBuilder, private TareaService: TareaService,
     @Inject(DOCUMENT) private doc: Document
-  ) {}
+  ) { }
+
   groups: Igrupo[];
   inputTodo: string = '';
   user: any;
@@ -40,11 +42,17 @@ export class MisGruposComponent implements OnInit {
     this.randomColor = this.colors[2];
     this.user =  JSON.parse(localStorage.getItem('user'));
     this.groups = this.user.listaGruposCreados;
+    setTimeout(() => {
+      MisGruposComponent.SetEvents();
+        for (let i = 0; i < this.groups.length; i++){
+          (<HTMLHtmlElement>document.getElementsByClassName('group-card')[i]).style.backgroundColor = this.colors[i]
+        };
+    }, 0);
   }
 
-  setGroupId(event, id) {
+  setGroup(event, grupo) {
     event.stopPropagation();
-    MisGruposComponent.groupId = id;
+    MisGruposComponent.group = grupo;
   }
 
   receiveMessage($event){
@@ -75,32 +83,32 @@ export class MisGruposComponent implements OnInit {
     return this.infoForm.get('descripcion');
   };
 
-  GetAllGroups() {
-    this.GrupoService
-    .GetAllGroups()
-    .subscribe(allGroups => {
-      console.log('allGroups: -->', allGroups);
-      this.groups = allGroups;
+  //GetAllGroups() {
+  //  this.GrupoService
+  //  .GetAllGroups()
+  //  .subscribe(allGroups => {
+  //    console.log('allGroups: -->', allGroups);
+  //    this.groups = allGroups;
 
-      setTimeout(() => {
-        MisGruposComponent.SetEvents();
-        //var colors = ['red','greenyellow','blueviolet','pink','gray','aqua','bisque']
-        let grupos = document.getElementsByClassName('group-card').length;
-        for (let i = 0; i < grupos; i++){
-          //(<HTMLHtmlElement>document.getElementsByClassName('group-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
-          (<HTMLHtmlElement>document.getElementsByClassName('group-card')[i]).style.backgroundColor = this.colors[i]
-        };
-      }, 0)
-    });
-  };
+  //    setTimeout(() => {
+  //      MisGruposComponent.SetEvents();
+  //      //var colors = ['red','greenyellow','blueviolet','pink','gray','aqua','bisque']
+  //      let grupos = document.getElementsByClassName('group-card').length;
+  //      for (let i = 0; i < grupos; i++){
+  //        //(<HTMLHtmlElement>document.getElementsByClassName('group-card')[i]).style.backgroundColor = this.colors[Math.floor(Math.random()*7)]
+  //        (<HTMLHtmlElement>document.getElementsByClassName('group-card')[i]).style.backgroundColor = this.colors[i]
+  //      };
+  //    }, 0)
+  //  });
+  //};
 
-  GetGroupById(id: number) {
-    this.GrupoService
-      .GetGroupById(id)
-    .subscribe(id => {
-      console.log('id: -->', id);
-    });
-  };
+  //GetGroupById(id: number) {
+  //  this.GrupoService
+  //    .GetGroupById(id)
+  //  .subscribe(id => {
+  //    console.log('id: -->', id);
+  //  });
+  //};
 
 
   DeleteGroup(event, grupoId) {
@@ -185,7 +193,6 @@ export class MisGruposComponent implements OnInit {
   }
 
   private PreConfirmTask(grupoId: any, group: any) {
-    debugger
     this.GrupoService.EditGroup( group ).subscribe(
       group => {
         this.groups = this.groups.filter(group => group.grupoId != grupoId);
@@ -193,6 +200,9 @@ export class MisGruposComponent implements OnInit {
         this.groups = _.orderBy(this.groups, ['grupoId'], ['asc']);
         setTimeout(() => {
           MisGruposComponent.SetEvents();
+          for (let i = 0; i < this.groups.length; i++){
+            (<HTMLHtmlElement>document.getElementsByClassName('group-card')[i]).style.backgroundColor = this.colors[i]
+          };
         }, 0)
       }
     );

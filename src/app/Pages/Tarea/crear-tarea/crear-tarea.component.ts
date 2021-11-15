@@ -19,10 +19,8 @@ export class CrearTareaComponent implements OnInit {
   today = new Date().getDate();
   inputTask: string = '';
   isChecked: number = 0;
-  grupo_ID: number;
 
   ngOnInit(): void {
-    this.grupo_ID = parseInt(localStorage.getItem('grupoId'));
   }
 
   @Output() showForm: EventEmitter<boolean> = new EventEmitter();
@@ -36,9 +34,6 @@ export class CrearTareaComponent implements OnInit {
   infoForm = this.fb.group({
     fechaComprometida: ['', [Validators.required, Validators.minLength(3)]],
     descripcion: ['', [Validators.required, Validators.minLength(3)]],
-    estado: ['', [Validators.required]],
-    grupo_Id: ['', [Validators.required]],
-    usuarioCreador: ['', [Validators.required]]
   });
 
   get fechaComprometida() {
@@ -47,22 +42,17 @@ export class CrearTareaComponent implements OnInit {
   get descripcion() {
     return this.infoForm.get('descripcion');
   }
-  get estado() {
-    return this.infoForm.get('estado');
-  }
-  get usuarioCreador() {
-    return this.infoForm.get('usuarioCreador');
-  }
-  get grupo_Id() {
-    return this.infoForm.get('grupo_Id');
-  }
 
   CrearTarea() {
     this.infoForm.value.usuarioCreador = JSON.parse(localStorage.getItem('user'));
     this.infoForm.value.estado = 'Nueva';
-    debugger
+    this.infoForm.value.grupoCreador = JSON.parse(localStorage.getItem('grupo'));
     this.TareaService.SendTarea(this.infoForm.value).subscribe(tarea => {
       console.log('tarea: -->', tarea);
+      let user = JSON.parse(localStorage.getItem('user'));
+      user.grupoDefault.push(tarea);
+      localStorage.setItem('user', JSON.stringify(user));
+
       this.tasksList.emit(tarea);
 
       this.inputTask = '';

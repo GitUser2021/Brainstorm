@@ -2,7 +2,8 @@ export interface Iuser {
   usuarioId?:any
   email?: any,
   nombreApellido?: any,
-  listTareasCreadas?:any
+  listTareasCreadas?:any,
+  grupoDefault?:any
   //createdAt: any,
   //documento: any,
   //listGrupos: any,

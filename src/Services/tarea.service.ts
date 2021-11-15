@@ -25,21 +25,26 @@ export class TareaService {
     'Authorization': 'Bearer ' + this.JWT
   })
 }
-
+/*
+ ale  2,3,4,5
+ ivan 6,7,8,9
+ yo   10,11,12,13
+ agus 14,15,16,17
+ 
+ */
   SendTarea(obj: any): Observable<Itarea> {
     obj.grupo_Id = JSON.stringify(JSON.parse(localStorage.getItem('user')).listaGruposCreados[0].grupoId) ;
-    debugger
-
     console.log('jwt:', this.JWT)
     return this._http.post<Itarea>('/api/tareas', obj, this.HEADERS)
   };
 
-    SendSubTarea(obj: any): Observable<Itarea> {
+  SendSubTarea(obj: any): Observable<IsubTarea> {
+    obj.tarea_Id = JSON.stringify(JSON.parse(localStorage.getItem('user')).listaGruposCreados[0].tareaId) ;
     console.log('jwt:', this.JWT)
-    return this._http.post<Itarea>('/api/subtareas', obj, this.HEADERS)
+    return this._http.post<IsubTarea>('/api/subtareas', obj, this.HEADERS)
   };
 
-   GetAllSubTasks() {
+  GetAllSubTasks() {
     localStorage.setItem('JWT', this.JWT)
     return this._http.get<IsubTarea[]>('/api/subtareas');
   };
@@ -48,12 +53,16 @@ export class TareaService {
     return this._http.delete<Itarea>('/api/tareas/' + tareaId, this.HEADERS);
   };
 
+  DeleteSubTarea(subtareaId: number): Observable<IsubTarea> {
+    return this._http.delete<IsubTarea>('/api/subtareas/' + subtareaId, this.HEADERS);
+  };
+    
   GetAllTasks() {
     localStorage.setItem('JWT', this.JWT)
     return this._http.get<Itarea[]>('/api/tareas');
   };
 
-   GetAllTasksGroup() {
+  GetAllTasksGroup() {
     localStorage.setItem('JWT', this.JWT)
     return this._http.get<Itarea[]>('/api/tareasGrupo');
   };
@@ -68,5 +77,14 @@ export class TareaService {
 
   EditTaskStatus(tareaId: number, obj: any): Observable<Itarea> {
     return this._http.put<Itarea>('/api/tareas/' + tareaId, obj, this.HEADERS);
+  };
+
+  EditSubTask(subtareaId: number, obj: any): Observable<IsubTarea> {
+    debugger
+    return this._http.put<IsubTarea>('/api/subtareas' , obj, this.HEADERS);
+  };
+
+  EditSubTaskStatus(subtareaId: number, obj: any): Observable<IsubTarea> {
+    return this._http.put<IsubTarea>('/api/tareas/' + subtareaId, obj, this.HEADERS);
   };
 }

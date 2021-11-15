@@ -11,7 +11,7 @@
     <main>
       <div *ngIf="groups.length >= 1" id="grupos-main">
         <div id="grupos-container">
-          <div *ngFor="let group of groups; let i = index;" attr.data-id="{{i}}" (click)="setGroupId($event, group.grupoId)" [routerLink]="['/Tareas/' + group.nombre]" class="group-card" id="grupo-{{i}}-main" style="background:{{randomColor}};text-align: center; padding: 10px; margin-bottom: 10px; position:relative; width:25%; height:40%;">
+          <div *ngFor="let group of groups; let i = index;" attr.data-id="{{i}}" (click)="setGroup($event, group)" [routerLink]="['/Tareas/' + group.nombre]" class="group-card" id="grupo-{{i}}-main" style="background:{{randomColor}};text-align: center; padding: 10px; margin-bottom: 10px; position:relative; width:25%; height:40%;">
             <div class="group-container">
               <h2>{{ group.nombre }}</h2>
               <div class="icons-container" id="icons-{{i}}">

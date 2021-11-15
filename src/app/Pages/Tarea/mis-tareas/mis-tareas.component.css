@@ -149,6 +149,18 @@ main {
   transition: 300ms linear;
 }
 
+.showFormSubForm {
+  /*opacity:1;*/
+  margin-top: 0;
+  transition: 300ms linear;
+}
+
+.hideFormSubForm {
+  /*opacity:0;*/
+  margin-top: -34rem;
+  transition: 300ms linear;
+}
+
 .icons-container {
   position: absolute;
   top: -6px;

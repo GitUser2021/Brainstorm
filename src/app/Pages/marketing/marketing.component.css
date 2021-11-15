@@ -29,7 +29,7 @@
     margin-left: 10px;
   }
 
-.subtask-container span {
+.subtask-container-marketing span {
   margin-left: 10px;
 }
 
@@ -136,7 +136,7 @@ main {
     transform: scale(1.5);
   }
 
-.task-container, .subtask-container {
+.task-container, .subtask-container-marketing {
   text-align: center;
   position: relative;
 }
@@ -175,18 +175,18 @@ main {
     margin-left: 10px;
   }
 
-.task-container, .subtask-container {
+.task-container, .subtask-container-marketing {
   text-align: center;
   position: relative;
 }
 
-.subtask-container {
+.subtask-container-marketing {
   text-align: left;
 }
 
-.subtask-container span {
-  margin-left: 10px;
-}
+  .subtask-container-marketing span {
+    margin-left: 10px;
+  }
 
 main {
   display: flex;
