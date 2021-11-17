@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
         this.objRecibido.nombreApellido = this.profileInfo.nickname;
         this.objRecibido.listTareasCreadas = this.GetAllTasks();
         this.GetUserIfExist(this.objRecibido);
-      
+        localStorage.setItem('usuarioauth0', JSON.stringify(profile));
         this.profileJson = JSON.stringify(profile, null, 2)
       });
 

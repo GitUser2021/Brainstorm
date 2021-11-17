@@ -9,6 +9,7 @@ import { CrearGrupoComponent } from './Pages/Grupo/crear-grupo/crear-grupo.compo
 import { VerTareasComponent } from './Pages/Tarea/ver-tareas/ver-tareas.component';
 import { MisTareasComponent } from './Pages/Tarea/mis-tareas/mis-tareas.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { UserviewComponent } from './Pages/UserView/userview/userview.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -43,6 +44,11 @@ const routes: Routes = [
   {
     path: 'CrearTarea',
     component: CrearTareaComponent,
+    canActivate: [AuthGuard]
+  }, 
+  {
+    path: 'UserView',
+    component: UserviewComponent,
     canActivate: [AuthGuard]
   }
 ];

@@ -20,6 +20,7 @@ import { CrearGrupoComponent } from './Pages/Grupo/crear-grupo/crear-grupo.compo
 import { VerTareasComponent } from './Pages/Tarea/ver-tareas/ver-tareas.component';
 import { CrearTareaComponent } from './Pages/Tarea/crear-tarea/crear-tarea.component';
 import { CrearSubTareaComponent } from './Pages/SubTarea/crear-subTarea/crear-subTarea.component';
+import { UserviewComponent } from './Pages/UserView/userview/userview.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CrearSubTareaComponent } from './Pages/SubTarea/crear-subTarea/crear-su
     MarketingComponent,
     MisTareasComponent,
     CrearTareaComponent,
-    CrearSubTareaComponent
+    CrearSubTareaComponent,
+    UserviewComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

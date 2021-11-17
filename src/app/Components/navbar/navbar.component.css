@@ -89,6 +89,9 @@ main .helper span {
 .menu ul li.icon-settings {
   background-image: url("https://icongr.am/entypo/cog.svg?size=128&color=ffffff");
 }
+.menu ul li.icon-user {
+  background-image: url("https://icongr.am/clarity/accessibility-2.svg?size=128&color=ffffff");
+}
 .menu ul li:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
