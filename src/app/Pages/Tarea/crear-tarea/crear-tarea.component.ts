@@ -44,18 +44,25 @@ export class CrearTareaComponent implements OnInit {
   }
 
   CrearTarea() {
+    debugger
     this.infoForm.value.usuarioCreador = JSON.parse(localStorage.getItem('user'));
     this.infoForm.value.estado = 'Nueva';
-    this.infoForm.value.grupoCreador = JSON.parse(localStorage.getItem('grupo'));
+
+    let grupo = JSON.parse(localStorage.getItem('grupo'));
+
+    if (grupo == undefined) {
+      grupo = JSON.parse(localStorage.getItem('user')).listaGruposCreados[0];
+    }
+
+    this.infoForm.value.grupoCreador = grupo;
+
     this.TareaService.SendTarea(this.infoForm.value).subscribe(tarea => {
       console.log('tarea: -->', tarea);
       let user = JSON.parse(localStorage.getItem('user'));
-      user.grupoDefault.push(tarea);
-      localStorage.setItem('user', JSON.stringify(user));
-
+      user.listaGruposCreados[0].listaTareas.push(tarea);
       this.tasksList.emit(tarea);
-
       this.inputTask = '';
+      localStorage.removeItem('grupo');
       setTimeout(() => {
         MisTareasComponent.SetEvents();
       }, 0)

@@ -15,31 +15,26 @@ export class TareaService {
   tokenStruct = this.TokenService.getToken();
   JWT = this.tokenStruct.body.id_token;
 
-   HEADERS = {
-  headers: new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Credentials': 'false',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + this.JWT
-  })
-}
-/*
- ale  2,3,4,5
- ivan 6,7,8,9
- yo   10,11,12,13
- agus 14,15,16,17
- 
- */
+  HEADERS = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Credentials': 'false',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.JWT
+    })
+  }
+
   SendTarea(obj: any): Observable<Itarea> {
-    obj.grupo_Id = JSON.stringify(JSON.parse(localStorage.getItem('user')).listaGruposCreados[0].grupoId) ;
+    debugger
+    obj.grupo_Id = JSON.stringify(JSON.parse(localStorage.getItem('user')).listaGruposCreados[0].grupoId);
     console.log('jwt:', this.JWT)
     return this._http.post<Itarea>('/api/tareas', obj, this.HEADERS)
   };
 
   SendSubTarea(obj: any): Observable<IsubTarea> {
-    obj.tarea_Id = JSON.stringify(JSON.parse(localStorage.getItem('user')).listaGruposCreados[0].tareaId) ;
+    obj.tarea_Id = JSON.stringify(JSON.parse(localStorage.getItem('user')).listaGruposCreados[0].tareaId);
     console.log('jwt:', this.JWT)
     return this._http.post<IsubTarea>('/api/subtareas', obj, this.HEADERS)
   };
@@ -56,7 +51,7 @@ export class TareaService {
   DeleteSubTarea(subtareaId: number): Observable<IsubTarea> {
     return this._http.delete<IsubTarea>('/api/subtareas/' + subtareaId, this.HEADERS);
   };
-    
+
   GetAllTasks() {
     localStorage.setItem('JWT', this.JWT)
     return this._http.get<Itarea[]>('/api/tareas');
@@ -72,7 +67,7 @@ export class TareaService {
   };
 
   EditTask(tareaId: number, obj: any): Observable<Itarea> {
-    return this._http.put<Itarea>('/api/tareas' , obj, this.HEADERS);
+    return this._http.put<Itarea>('/api/tareas', obj, this.HEADERS);
   };
 
   EditTaskStatus(tareaId: number, obj: any): Observable<Itarea> {
@@ -80,8 +75,7 @@ export class TareaService {
   };
 
   EditSubTask(subtareaId: number, obj: any): Observable<IsubTarea> {
-    debugger
-    return this._http.put<IsubTarea>('/api/subtareas' , obj, this.HEADERS);
+    return this._http.put<IsubTarea>('/api/subtareas', obj, this.HEADERS);
   };
 
   EditSubTaskStatus(subtareaId: number, obj: any): Observable<IsubTarea> {

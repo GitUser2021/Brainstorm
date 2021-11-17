@@ -41,10 +41,6 @@ export class NavbarComponent implements OnInit {
   GetUserIfExist(obj: any) {
     this.GrupoService.GetUserIfExist(obj).subscribe( user => {
       console.log('user if exists: -->', user);
-      if (user.grupoDefault == undefined) {
-          user.grupoDefault = [];
-      }
-
       localStorage.setItem('user', JSON.stringify(user));
     });
   };

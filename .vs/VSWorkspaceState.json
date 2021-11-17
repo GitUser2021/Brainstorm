@@ -5,12 +5,11 @@
     "\\src\\app",
     "\\src\\app\\Components",
     "\\src\\app\\Components\\navbar",
-    "\\src\\app\\Models",
     "\\src\\app\\Pages",
     "\\src\\app\\Pages\\Tarea",
-    "\\src\\app\\Pages\\Tarea\\mis-tareas",
+    "\\src\\app\\Pages\\Tarea\\ver-tareas",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\app\\Pages\\Tarea\\crear-tarea\\crear-tarea.component.html",
+  "SelectedNode": "\\src\\app\\Components\\navbar\\navbar.component.html",
   "PreviewInSolutionExplorer": false
 }

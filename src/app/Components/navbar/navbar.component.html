@@ -1,8 +1,8 @@
 <nav class="menu" tabindex="0">
   <div class="smartphone-menu-trigger"></div>
   <header class="avatar">
-    <img id="avatar-img" src="assets/profile-standard.png" *ngIf="profileInfo?.picture.indexOf('http') == -1"/>
-    <img id="avatar-img" src="{{ profileInfo?.picture }}" *ngIf="profileInfo?.picture.indexOf('http') >= 0"/>
+    <img id="avatar-img" src="assets/profile-standard.png" *ngIf="profileInfo?.picture.indexOf('http') == -1" />
+    <img id="avatar-img" src="{{ profileInfo?.picture }}" *ngIf="profileInfo?.picture.indexOf('http') >= 0" />
     <br />
     <h3>Usuario</h3>
     <h2>{{ profileInfo?.name }}</h2>
@@ -20,9 +20,6 @@
     </li>
     <li [routerLink]="['/MisTareas']" tabindex="0" class="icon-task">
       <b><span>Mis Tareas</span></b>
-    </li>
-    <li tabindex="0" class="icon-settings">
-      <b><span>Opciones</span></b>
     </li>
     <li [routerLink]="['/EnviaMail']" tabindex="0" class="icon-mail">
       <b><span>Mail</span></b>

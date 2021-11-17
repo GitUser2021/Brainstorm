@@ -157,8 +157,8 @@ main {
 }
 
 #titulo-miembros-container h2 {
-    font-size: 1rem;
-  }
+  font-size: 1rem;
+}
 
 #task-frame {
   height: 70vh;
@@ -212,8 +212,8 @@ main {
   z-index: 1;
 }
 
-  #tareas-container div {
-  }
+#tareas-container div {
+}
 
 .fecha-comprometida-container {
   text-align: center;
@@ -226,6 +226,10 @@ main {
   padding-right: 5px;
 }
 
-  .icons-container svg:hover {
-    transform: scale(1.5);
-  }
+.icons-container svg:hover {
+  transform: scale(1.5);
+}
+
+.taskCompleted {
+  text-decoration: line-through;
+}

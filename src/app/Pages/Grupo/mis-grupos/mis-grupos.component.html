@@ -9,7 +9,7 @@
     </div>
 
     <main>
-      <div *ngIf="groups.length >= 1" id="grupos-main">
+      <div *ngIf="groups.length >=1" id="grupos-main">
         <div id="grupos-container">
           <div *ngFor="let group of groups; let i = index;" attr.data-id="{{i}}" (click)="setGroup($event, group)" [routerLink]="['/Tareas/' + group.nombre]" class="group-card" id="grupo-{{i}}-main" style="background:{{randomColor}};text-align: center; padding: 10px; margin-bottom: 10px; position:relative; width:25%; height:40%;">
             <div class="group-container">

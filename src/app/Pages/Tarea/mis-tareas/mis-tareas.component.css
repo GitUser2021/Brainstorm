@@ -17,10 +17,10 @@
   width: 100%;
 }
 
-  #titulo-container h2 {
-    text-align: center;
-    font-size: 1rem;
-  }
+#titulo-container h2 {
+  text-align: center;
+  font-size: 1rem;
+}
 
 #titulo-miembros-container {
   display: flex;
@@ -81,12 +81,12 @@ main {
 
 #titulo-container button {
   margin-left: 4rem;
-  z-index:1;
+  z-index: 1;
 }
 
-  #tareas-container div {
-    cursor: pointer;
-  }
+#tareas-container div {
+  cursor: pointer;
+}
 
 .fecha-comprometida-container {
   text-align: center;
@@ -99,14 +99,14 @@ main {
   padding-right: 5px;
 }
 
-  .icons-container svg {
-    width: 1.7rem;
-  }
+.icons-container svg {
+  width: 1.7rem;
+}
 
-  #crear-Button {
-    background-color:cadetblue;
-    color: white!important;
-    border-color: turquoise;
+#crear-Button {
+  background-color: cadetblue;
+  color: white !important;
+  border-color: turquoise;
 }
 
 #titulo-container {
@@ -183,6 +183,24 @@ main {
   text-align: center;
   position: relative;
 }
+
 .subtask-container {
   text-align: left;
+}
+
+.taskCompleted {
+  text-decoration: line-through;
+}
+
+.span-add-sub-task {
+  border: 1px solid #00000045;
+  display: block;
+  width: 25%;
+  padding: 5px;
+  text-align: center;
+  border-radius: 10px;
+  background: aliceblue;
+  font-weight: bold;
+  margin-top: 5px;
+  box-shadow: 1px 2px 7px;
 }
